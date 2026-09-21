@@ -1,0 +1,19 @@
+-- // black korblox by Vanillaa
+game.TextChatService.TextChannels.RBXGeneral:SendAsync("Fake Black Korblox By Vanillaa")
+if game.Players:FindFirstChild("theinfgod_224629") then
+    if game.Players.LocalPlayer.Name == "theinfgod_224629" then
+        game.TextChatService.TextChannels.RBXGeneral:SendAsync("Hello, Vanillaa - Script")
+    else
+        game.TextChatService.TextChannels.RBXGeneral:SendAsync("Vanillaa is in ur server loll")
+    end
+end
+local p = game:GetService("Players").LocalPlayer
+local c = p.Character
+for _, limb in ipairs(c:GetChildren()) do
+    if limb:IsA("Part") then
+        if limb.Name == "Right Leg" then
+            limb:Destroy()
+        end
+    end
+end
+game.ReplicatedStorage["01_server"]:FireServer("cmd", "-gh 114089503334698")
