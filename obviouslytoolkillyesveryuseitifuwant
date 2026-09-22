@@ -1,0 +1,74 @@
+local TargetName = [[boboistrike]]
+
+local LocalPlayer = game:GetService("Players").LocalPlayer
+local TargetPlayer = game:GetService("Players")[TargetName]
+local Character = LocalPlayer.Character
+local Humanoid = Character:FindFirstChildOfClass("Humanoid")
+local RootPart = Character:FindFirstChild("HumanoidRootPart")
+local KillPos = CFrame.new(0, -497.99, 0)
+
+local OldPos = Character:GetPivot()
+
+if Humanoid then
+	Humanoid.Name = "1"
+	local NewHumanoid = Humanoid:Clone()
+	NewHumanoid.Parent = Character
+	NewHumanoid.Name = "Humanoid"
+	
+	task.wait()
+	
+	Character["1"]:Destroy()
+end
+
+game.Players.LocalPlayer.Character.Humanoid:ChangeState(1)
+game.Workspace.CurrentCamera.CameraSubject = Character
+Character.Animate.Disabled = true
+task.wait()
+Character.Animate.Disabled = false
+Character.Humanoid.DisplayDistanceType = "None"
+
+for i, v in pairs(LocalPlayer.Backpack:GetChildren()) do
+	if v:IsA("Tool") then
+		Character.Humanoid:EquipTool(v)
+	end
+end
+
+local function TeleportToPlayer(pTarget)
+	if pTarget.Character and pTarget.Character:FindFirstChild("HumanoidRootPart") and Character:FindFirstChild("HumanoidRootPart") then
+		Character.HumanoidRootPart.CFrame = pTarget.Character.HumanoidRootPart.CFrame * CFrame.new(-1, -1, 0)
+	end
+end
+
+if TargetPlayer then
+	
+	TeleportToPlayer(TargetPlayer)
+	task.wait()
+	TeleportToPlayer(TargetPlayer)
+	task.wait()
+
+
+	if Character and TargetPlayer.Character and TargetPlayer.Character:FindFirstChild("Head") then
+		Character:MoveTo(TargetPlayer.Character.Head.Position)
+	end
+	
+	task.wait(0.27)
+	Character:PivotTo(KillPos)
+	task.wait()
+	Character:PivotTo(KillPos)
+	task.wait()
+	Character:PivotTo(KillPos)
+	task.wait()
+	Character:PivotTo(KillPos)
+	task.wait()
+	Character:PivotTo(KillPos)
+	task.wait(.8)
+	game.ReplicatedStorage["01_server"]:FireServer("cmd","-re")
+	task.wait(0.25)
+	local Characterr = game.Players.LocalPlayer.Character
+	Characterr:PivotTo(OldPos)
+	task.wait(0.25)
+	Characterr:PivotTo(OldPos)
+else
+
+	warn("Incorrect User: " .. TargetName)
+end
