@@ -1,0 +1,12 @@
+game.TextChatService.TextChannels.RBXGeneral:SendAsync("AntiTool  | by TastyVanillaa")
+local p = game.Players.LocalPlayer
+local c = p.Character
+
+c.ChildAdded:Connect(function()
+for _, abcdefgun in ipairs(c:GetChildren()) do
+if abcdefgun:IsA("Tool") then
+abcdefgun:Destroy()
+c.Humanoid:UnequipTools()
+end
+end
+end)
