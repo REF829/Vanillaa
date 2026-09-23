@@ -14,6 +14,7 @@ local discontinued = false
 -- f oldhacfard so tuff oldhacfard so tuff oldhacfard so tuff oldhac --
 -- WHY IS OLDHACFARD SO TUFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF --
 -- W oldhacfard, literally W.                                        --
+-- V4                                                                --
 -- ================================================================= --
 
 local Players = game:GetService("Players")
@@ -25,7 +26,6 @@ local SoundService = game:GetService("SoundService")
 local LocalPlayer = Players.LocalPlayer
 local Mouse = LocalPlayer:GetMouse()
 
--- Safe UI Container Retrieval
 local function getSafeParent()
 	local parent = nil
 	pcall(function()
@@ -42,14 +42,12 @@ end
 
 local uiParent = getSafeParent()
 
--- Clean Pre-existing UI
 pcall(function()
 	if uiParent and uiParent:FindFirstChild("SupremeMatrixHackerHUD") then
 		uiParent.SupremeMatrixHackerHUD:Destroy()
 	end
 end)
 
--- Cyber Sound Effects Player
 local function playCyberAudio(soundId, pitch)
 	task.spawn(function()
 		pcall(function()
@@ -64,7 +62,6 @@ local function playCyberAudio(soundId, pitch)
 	end)
 end
 
--- ScreenGui Setup
 local screenGui = Instance.new("ScreenGui")
 screenGui.Name = "SupremeMatrixHackerHUD"
 screenGui.ResetOnSpawn = false
@@ -72,7 +69,6 @@ screenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
 pcall(function() screenGui.Parent = uiParent end)
 
--- Neon Hacker Color Palette
 local HYPER_GREEN = Color3.fromRGB(0, 255, 128)
 local NEON_GLOW = Color3.fromRGB(50, 255, 150)
 local DARK_GREEN = Color3.fromRGB(0, 140, 50)
@@ -628,7 +624,7 @@ execButton.MouseButton1Click:Connect(function()
 
 				local Humanoid = Character:FindFirstChildOfClass("Humanoid")
 				local RootPart = Character:FindFirstChild("HumanoidRootPart")
-				local KillPos = CFrame.new(0, -497.9, 0)
+				local KillPos = CFrame.new(0, -498.9, 0)
 				local OldPos = Character:GetPivot()
 
 				-- Humanoid Bypass Sequence
