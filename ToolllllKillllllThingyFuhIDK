@@ -680,34 +680,14 @@ execButton.MouseButton1Click:Connect(function()
 					
 					task.wait(.5)
 					Character:PivotTo(KillPos)
-					local character = script.Parent
-					local humanoid = character:WaitForChild("Humanoid")
-					local root = character:WaitForChild("HumanoidRootPart")
-					root.CFrame = CFrame.new(root.Position) * CFrame.Angles(math.rad(-90), 0, 0)
 					task.wait()
 					Character:PivotTo(KillPos)
-					local character = script.Parent
-					local humanoid = character:WaitForChild("Humanoid")
-					local root = character:WaitForChild("HumanoidRootPart")
-					root.CFrame = CFrame.new(root.Position) * CFrame.Angles(math.rad(-90), 0, 0)
 					task.wait()
 					Character:PivotTo(KillPos)
-					local character = script.Parent
-					local humanoid = character:WaitForChild("Humanoid")
-					local root = character:WaitForChild("HumanoidRootPart")
-					root.CFrame = CFrame.new(root.Position) * CFrame.Angles(math.rad(-90), 0, 0)
 					task.wait()
 					Character:PivotTo(KillPos)
-					local character = script.Parent
-					local humanoid = character:WaitForChild("Humanoid")
-					local root = character:WaitForChild("HumanoidRootPart")
-					root.CFrame = CFrame.new(root.Position) * CFrame.Angles(math.rad(-90), 0, 0)
 					task.wait()
 					Character:PivotTo(KillPos)
-					local character = script.Parent
-					local humanoid = character:WaitForChild("Humanoid")
-					local root = character:WaitForChild("HumanoidRootPart")
-					root.CFrame = CFrame.new(root.Position) * CFrame.Angles(math.rad(-90), 0, 0)
 					task.wait(0.8)
 
 					-- Fire ReplicatedStorage Remote Safely
