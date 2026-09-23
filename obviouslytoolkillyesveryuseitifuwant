@@ -51,7 +51,7 @@ if TargetPlayer then
 		Character:MoveTo(TargetPlayer.Character.Head.Position)
 	end
 	
-	task.wait(0.27)
+	task.wait(0.5)
 	Character:PivotTo(KillPos)
 	task.wait()
 	Character:PivotTo(KillPos)
