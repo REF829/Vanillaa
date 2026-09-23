@@ -1,3 +1,5 @@
+local discontinued = false
+
 -- ================================================================= --
 -- UI Designer: oldhacfard | Owner / TastyVanillaa                   --
 -- TastyVanillaa (me)'s Discord Is.. vanillashere                    --
