@@ -1,0 +1,744 @@
+-- ================================================================= --
+-- UI Designer: oldhacfard | Owner / TastyVanillaa                   --
+-- TastyVanillaa (me)'s Discord Is.. vanillashere                    --
+-- W oldhacfard W oldhacfard W oldhacfard W oldhacfard W oldhacfard  --
+-- oldhacfard so tuff oldhacfard so tuff oldhacfard so tuff oldhacfa --
+-- ard so tuff oldhacfard so tuff oldhacfard so tuff oldhacfard so t --
+-- uff oldhacfard so tuff oldhacfard so tuff oldhacfard so tuff oldh --
+-- acfard so tuff oldhacfard so tuff oldhacfard so tuff oldhacfard s --
+-- o tuff oldhacfard so tuff oldhacfard so tuff oldhacfard so tuff o --
+-- ldhacfard so tuff oldhacfard so tuff oldhacfard so tuff oldhacfar --
+-- d so tuff oldhacfard so tuff oldhacfard so tuff oldhacfard so tuf --
+-- f oldhacfard so tuff oldhacfard so tuff oldhacfard so tuff oldhac --
+-- WHY IS OLDHACFARD SO TUFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF --
+-- W oldhacfard, literally W.                                        --
+-- V4                                                                --
+-- ================================================================= --
+
+local Players = game:GetService("Players")
+local TweenService = game:GetService("TweenService")
+local UserInputService = game:GetService("UserInputService")
+local RunService = game:GetService("RunService")
+local SoundService = game:GetService("SoundService")
+
+local LocalPlayer = Players.LocalPlayer
+local Mouse = LocalPlayer:GetMouse()
+
+local function getSafeParent()
+	local parent = nil
+	pcall(function()
+		if gethui then parent = gethui() end
+	end)
+	if not parent then
+		pcall(function() parent = game:GetService("CoreGui") end)
+	end
+	if not parent then
+		pcall(function() parent = LocalPlayer:WaitForChild("PlayerGui", 4) end)
+	end
+	return parent or LocalPlayer:FindFirstChildOfClass("PlayerGui")
+end
+
+local uiParent = getSafeParent()
+
+pcall(function()
+	if uiParent and uiParent:FindFirstChild("SupremeMatrixHackerHUD") then
+		uiParent.SupremeMatrixHackerHUD:Destroy()
+	end
+end)
+
+local function playCyberAudio(soundId, pitch)
+	task.spawn(function()
+		pcall(function()
+			local sound = Instance.new("Sound")
+			sound.SoundId = soundId
+			sound.Volume = 0.35
+			sound.PlaybackSpeed = pitch or 1
+			sound.Parent = SoundService
+			sound:Play()
+			sound.Ended:Connect(function() sound:Destroy() end)
+		end)
+	end)
+end
+
+local screenGui = Instance.new("ScreenGui")
+screenGui.Name = "SupremeMatrixHackerHUD"
+screenGui.ResetOnSpawn = false
+screenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+pcall(function() screenGui.Parent = uiParent end)
+
+local HYPER_GREEN = Color3.fromRGB(0, 255, 128)
+local NEON_GLOW = Color3.fromRGB(50, 255, 150)
+local DARK_GREEN = Color3.fromRGB(0, 140, 50)
+local MATRIX_BG = Color3.fromRGB(4, 10, 6)
+local CONTAINER_BG = Color3.fromRGB(8, 20, 12)
+local ERROR_RED = Color3.fromRGB(255, 40, 70)
+
+-- Hacker Toast Notification
+local function sendHackerNotif(titleText, descText, customColor)
+	task.spawn(function()
+		pcall(function()
+			local themeColor = customColor or HYPER_GREEN
+			
+			local notif = Instance.new("Frame")
+			notif.Size = UDim2.new(0, 260, 0, 54)
+			notif.Position = UDim2.new(1, 20, 0.75, 0)
+			notif.BackgroundColor3 = MATRIX_BG
+			notif.BorderSizePixel = 0
+			notif.ZIndex = 5000
+			notif.Parent = screenGui
+
+			local nCorner = Instance.new("UICorner")
+			nCorner.CornerRadius = UDim.new(0, 8)
+			nCorner.Parent = notif
+
+			local nStroke = Instance.new("UIStroke")
+			nStroke.Color = themeColor
+			nStroke.Thickness = 1.5
+			nStroke.Parent = notif
+
+			local sideBar = Instance.new("Frame")
+			sideBar.Size = UDim2.new(0, 4, 1, 0)
+			sideBar.BackgroundColor3 = themeColor
+			sideBar.BorderSizePixel = 0
+			sideBar.Parent = notif
+
+			local sbCorner = Instance.new("UICorner")
+			sbCorner.CornerRadius = UDim.new(0, 8)
+			sbCorner.Parent = sideBar
+
+			local nTitle = Instance.new("TextLabel")
+			nTitle.Size = UDim2.new(1, -16, 0, 18)
+			nTitle.Position = UDim2.new(0, 12, 0, 6)
+			nTitle.BackgroundTransparency = 1
+			nTitle.Text = "☣ " .. titleText:upper()
+			nTitle.TextColor3 = themeColor
+			nTitle.TextSize = 10
+			nTitle.Font = Enum.Font.Code
+			nTitle.TextXAlignment = Enum.TextXAlignment.Left
+			nTitle.ZIndex = 5001
+			nTitle.Parent = notif
+
+			local nDesc = Instance.new("TextLabel")
+			nDesc.Size = UDim2.new(1, -16, 0, 22)
+			nDesc.Position = UDim2.new(0, 12, 0, 24)
+			nDesc.BackgroundTransparency = 1
+			nDesc.Text = descText
+			nDesc.TextColor3 = Color3.fromRGB(190, 255, 210)
+			nDesc.TextSize = 9
+			nDesc.Font = Enum.Font.Code
+			nDesc.TextXAlignment = Enum.TextXAlignment.Left
+			nDesc.ZIndex = 5001
+			nDesc.Parent = notif
+
+			playCyberAudio("rbxassetid://9114223171", 1.4)
+			
+			TweenService:Create(notif, TweenInfo.new(0.35, Enum.EasingStyle.Back, Enum.EasingDirection.Out), {Position = UDim2.new(1, -275, 0.75, 0)}):Play()
+			
+			task.delay(3, function()
+				pcall(function()
+					local tw = TweenService:Create(notif, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.In), {Position = UDim2.new(1, 20, 0.75, 0)})
+					tw:Play()
+					tw.Completed:Connect(function() notif:Destroy() end)
+				end)
+			end)
+		end)
+	end)
+end
+
+-- Main Hacker UI Frame
+local mainFrame = Instance.new("Frame")
+mainFrame.Name = "MainFrame"
+mainFrame.Size = UDim2.new(0, 320, 0, 265)
+mainFrame.Position = UDim2.new(0.5, -160, 0.5, -132)
+mainFrame.BackgroundColor3 = MATRIX_BG
+mainFrame.BorderSizePixel = 0
+mainFrame.Active = true
+mainFrame.ClipsDescendants = true
+mainFrame.Parent = screenGui
+
+local mainCorner = Instance.new("UICorner")
+mainCorner.CornerRadius = UDim.new(0, 10)
+mainCorner.Parent = mainFrame
+
+local mainStroke = Instance.new("UIStroke")
+mainStroke.Color = HYPER_GREEN
+mainStroke.Thickness = 2
+mainStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+mainStroke.Parent = mainFrame
+
+-- ================================================================= --
+--     ANIMATED MATRIX DIGITAL RAIN & SCANLINE BACKGROUND EFFECT     --
+-- ================================================================= --
+local matrixContainer = Instance.new("Frame")
+matrixContainer.Name = "MatrixRainBg"
+matrixContainer.Size = UDim2.new(1, 0, 1, 0)
+matrixContainer.BackgroundTransparency = 1
+matrixContainer.ClipsDescendants = true
+matrixContainer.ZIndex = 1
+matrixContainer.Parent = mainFrame
+
+local matrixChars = {"0","1","X","Y","Z","A","9","8","4","#","$","%","&","@","§"}
+for i = 1, 9 do
+	task.spawn(function()
+		pcall(function()
+			local rainColumn = Instance.new("TextLabel")
+			rainColumn.Size = UDim2.new(0, 25, 1, 0)
+			rainColumn.Position = UDim2.new(0, (i - 1) * 35 + 8, 0, -50)
+			rainColumn.BackgroundTransparency = 1
+			rainColumn.TextColor3 = Color3.fromRGB(0, 180, 70)
+			rainColumn.TextTransparency = 0.75
+			rainColumn.TextSize = 10
+			rainColumn.Font = Enum.Font.Code
+			rainColumn.ZIndex = 1
+			rainColumn.Parent = matrixContainer
+
+			while mainFrame and mainFrame.Parent do
+				local str = ""
+				for j = 1, 12 do
+					str = str .. matrixChars[math.random(1, #matrixChars)] .. "\n"
+				end
+				rainColumn.Text = str
+				rainColumn.Position = UDim2.new(0, (i - 1) * 35 + 8, 0, -100)
+				
+				local tw = TweenService:Create(rainColumn, TweenInfo.new(math.random(25, 45) / 10, Enum.EasingStyle.Linear), {Position = UDim2.new(0, (i - 1) * 35 + 8, 0, 150)})
+				tw:Play()
+				task.wait(.4)
+			end
+		end)
+	end)
+end
+
+-- Animated Hologram Scanline Sweeper
+local scanLine = Instance.new("Frame")
+scanLine.Size = UDim2.new(1, 0, 0, 2)
+scanLine.Position = UDim2.new(0, 0, 0, 0)
+scanLine.BackgroundColor3 = NEON_GLOW
+scanLine.BackgroundTransparency = 0.6
+scanLine.BorderSizePixel = 0
+scanLine.ZIndex = 2
+scanLine.Parent = mainFrame
+
+task.spawn(function()
+	while mainFrame and mainFrame.Parent do
+		pcall(function()
+			scanLine.Position = UDim2.new(0, 0, 0, 0)
+			TweenService:Create(scanLine, TweenInfo.new(3, Enum.EasingStyle.Linear), {Position = UDim2.new(0, 0, 1, 0)}):Play()
+			task.wait(3)
+		end)
+	end
+end)
+
+-- Glowing Stroke Pulse Loop
+task.spawn(function()
+	while mainFrame and mainFrame.Parent do
+		pcall(function()
+			TweenService:Create(mainStroke, TweenInfo.new(1.2, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut), {Color = DARK_GREEN}):Play()
+			task.wait(1.2)
+			TweenService:Create(mainStroke, TweenInfo.new(1.2, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut), {Color = HYPER_GREEN}):Play()
+			task.wait(1.2)
+		end)
+	end
+end)
+
+-- Header Bar
+local header = Instance.new("Frame")
+header.Name = "Header"
+header.Size = UDim2.new(1, 0, 0, 48)
+header.BackgroundColor3 = Color3.fromRGB(6, 16, 10)
+header.BorderSizePixel = 0
+header.ZIndex = 5
+header.Parent = mainFrame
+
+local headerCorner = Instance.new("UICorner")
+headerCorner.CornerRadius = UDim.new(0, 10)
+headerCorner.Parent = header
+
+local titleText = Instance.new("TextLabel")
+titleText.Size = UDim2.new(1, -60, 0, 20)
+titleText.Position = UDim2.new(0, 12, 0, 6)
+titleText.BackgroundTransparency = 1
+titleText.Text = "TastyVanillaa's Cat Eater (Toolkill Gui)"
+titleText.TextColor3 = HYPER_GREEN
+titleText.TextSize = 11
+titleText.Font = Enum.Font.Code
+titleText.TextXAlignment = Enum.TextXAlignment.Left
+titleText.ZIndex = 6
+titleText.Parent = header
+
+-- Cyber Glitch Text Animation on Title
+task.spawn(function()
+	local originalText = "TastyVanillaa's Cat Eater (Toolkill Gui)"
+	local glitchTexts = {"Fun Fact: No Facts Are Fun :<", "CATS HAVE BEEN EATEN", "K1LLED SYSTEM"}
+	while mainFrame and mainFrame.Parent do
+		task.wait(math.random(4, 8))
+		pcall(function()
+			titleText.Text = glitchTexts[math.random(1, #glitchTexts)]
+			titleText.TextColor3 = NEON_GLOW
+			task.wait(0.2)
+			titleText.Text = originalText
+			titleText.TextColor3 = HYPER_GREEN
+		end)
+	end
+end)
+
+local creditsText = Instance.new("TextLabel")
+creditsText.Size = UDim2.new(1, -20, 0, 16)
+creditsText.Position = UDim2.new(0, 12, 0, 26)
+creditsText.BackgroundTransparency = 1
+creditsText.Text = "UI: oldhacfard | Core: tastyVanilaa | System: Online"
+creditsText.TextColor3 = Color3.fromRGB(0, 180, 90)
+creditsText.TextSize = 8
+creditsText.Font = Enum.Font.Code
+creditsText.TextXAlignment = Enum.TextXAlignment.Left
+creditsText.ZIndex = 6
+creditsText.Parent = header
+
+local toggleBtn = Instance.new("TextButton")
+toggleBtn.Size = UDim2.new(0, 26, 0, 26)
+toggleBtn.Position = UDim2.new(1, -34, 0, 11)
+toggleBtn.BackgroundColor3 = Color3.fromRGB(10, 26, 16)
+toggleBtn.Text = "[-]"
+toggleBtn.TextColor3 = HYPER_GREEN
+toggleBtn.TextSize = 11
+toggleBtn.Font = Enum.Font.Code
+toggleBtn.ZIndex = 6
+toggleBtn.Parent = header
+
+local toggleCorner = Instance.new("UICorner")
+toggleCorner.CornerRadius = UDim.new(0, 6)
+toggleCorner.Parent = toggleBtn
+
+local toggleStroke = Instance.new("UIStroke")
+toggleStroke.Color = HYPER_GREEN
+toggleStroke.Thickness = 1
+toggleStroke.Parent = toggleBtn
+
+-- Tool System Indicator Badge
+local toolBadge = Instance.new("Frame")
+toolBadge.Size = UDim2.new(1, -20, 0, 22)
+toolBadge.Position = UDim2.new(0, 10, 0, 54)
+toolBadge.BackgroundColor3 = CONTAINER_BG
+toolBadge.ZIndex = 5
+toolBadge.Parent = mainFrame
+
+local badgeCorner = Instance.new("UICorner")
+badgeCorner.CornerRadius = UDim.new(0, 6)
+badgeCorner.Parent = toolBadge
+
+local badgeStroke = Instance.new("UIStroke")
+badgeStroke.Color = Color3.fromRGB(15, 40, 22)
+badgeStroke.Thickness = 1
+badgeStroke.Parent = toolBadge
+
+local badgeText = Instance.new("TextLabel")
+badgeText.Size = UDim2.new(1, -10, 1, 0)
+badgeText.Position = UDim2.new(0, 8, 0, 0)
+badgeText.BackgroundTransparency = 1
+badgeText.Text = "TOOL INVENTORY: SCANNING..."
+badgeText.TextColor3 = Color3.fromRGB(255, 200, 0)
+badgeText.TextSize = 9
+badgeText.Font = Enum.Font.Code
+badgeText.TextXAlignment = Enum.TextXAlignment.Left
+badgeText.ZIndex = 6
+badgeText.Parent = toolBadge
+
+-- Real-Time Tool Detector
+task.spawn(function()
+	while mainFrame and mainFrame.Parent do
+		pcall(function()
+			local char = LocalPlayer.Character
+			local backpack = LocalPlayer:FindFirstChildOfClass("Backpack") or LocalPlayer:FindFirstChild("Backpack")
+			local hasTool = (char and char:FindFirstChildOfClass("Tool")) or (backpack and backpack:FindFirstChildOfClass("Tool"))
+			
+			if hasTool then
+				badgeText.Text = "TOOL INVENTORY: READY [" .. hasTool.Name:upper() .. "]"
+				badgeText.TextColor3 = HYPER_GREEN
+			else
+				badgeText.Text = "TOOL INVENTORY: NO TOOL EQUIPPED!"
+				badgeText.TextColor3 = ERROR_RED
+			end
+		end)
+		task.wait(0.8)
+	end
+end)
+
+-- Target Input Container
+local inputContainer = Instance.new("Frame")
+inputContainer.Size = UDim2.new(1, -20, 0, 40)
+inputContainer.Position = UDim2.new(0, 10, 0, 82)
+inputContainer.BackgroundColor3 = CONTAINER_BG
+inputContainer.ZIndex = 5
+inputContainer.Parent = mainFrame
+
+local inputCorner = Instance.new("UICorner")
+inputCorner.CornerRadius = UDim.new(0, 6)
+inputCorner.Parent = inputContainer
+
+local inputStroke = Instance.new("UIStroke")
+inputStroke.Color = Color3.fromRGB(20, 50, 30)
+inputStroke.Thickness = 1
+inputStroke.Parent = inputContainer
+
+local avatarFrame = Instance.new("Frame")
+avatarFrame.Size = UDim2.new(0, 30, 0, 30)
+avatarFrame.Position = UDim2.new(0, 5, 0, 5)
+avatarFrame.BackgroundColor3 = Color3.fromRGB(12, 32, 18)
+avatarFrame.ZIndex = 6
+avatarFrame.Parent = inputContainer
+
+local avatarCorner = Instance.new("UICorner")
+avatarCorner.CornerRadius = UDim.new(0, 4)
+avatarCorner.Parent = avatarFrame
+
+local avatarImage = Instance.new("ImageLabel")
+avatarImage.Size = UDim2.new(1, 0, 1, 0)
+avatarImage.BackgroundTransparency = 1
+avatarImage.Image = "rbxassetid://6031082533"
+avatarImage.ZIndex = 7
+avatarImage.Parent = avatarFrame
+
+local targetBox = Instance.new("TextBox")
+targetBox.Size = UDim2.new(1, -48, 1, 0)
+targetBox.Position = UDim2.new(0, 42, 0, 0)
+targetBox.BackgroundTransparency = 1
+targetBox.PlaceholderText = "> TARGET_USER // CLICK PLAYER"
+targetBox.PlaceholderColor3 = Color3.fromRGB(0, 130, 65)
+targetBox.Text = ""
+targetBox.TextColor3 = Color3.fromRGB(255, 255, 255)
+targetBox.TextSize = 10
+targetBox.Font = Enum.Font.Code
+targetBox.ClearTextOnFocus = false
+targetBox.TextXAlignment = Enum.TextXAlignment.Left
+targetBox.ZIndex = 6
+targetBox.Parent = inputContainer
+
+-- Execute Cyber Button
+local execButton = Instance.new("TextButton")
+execButton.Name = "ExecButton"
+execButton.Size = UDim2.new(1, -20, 0, 42)
+execButton.Position = UDim2.new(0, 10, 0, 130)
+execButton.BackgroundColor3 = HYPER_GREEN
+execButton.Text = "[ ☣ INITIATE MATRIX ATTACK ☣ ]"
+execButton.TextColor3 = MATRIX_BG
+execButton.TextSize = 10
+execButton.Font = Enum.Font.Code
+execButton.AutoButtonColor = false
+execButton.ClipsDescendants = true
+execButton.ZIndex = 5
+execButton.Parent = mainFrame
+
+local btnCorner = Instance.new("UICorner")
+btnCorner.CornerRadius = UDim.new(0, 6)
+btnCorner.Parent = execButton
+
+local btnGradient = Instance.new("UIGradient")
+btnGradient.Color = ColorSequence.new({
+	ColorSequenceKeypoint.new(0, Color3.fromRGB(0, 255, 140)),
+	ColorSequenceKeypoint.new(1, Color3.fromRGB(0, 170, 70))
+})
+btnGradient.Parent = execButton
+
+-- System Status
+local statusLabel = Instance.new("TextLabel")
+statusLabel.Size = UDim2.new(1, -20, 0, 18)
+statusLabel.Position = UDim2.new(0, 10, 0, 182)
+statusLabel.BackgroundTransparency = 1
+statusLabel.Text = "SYSTEM // IDLE - STANDBY FOR TARGET"
+statusLabel.TextColor3 = Color3.fromRGB(0, 190, 95)
+statusLabel.TextSize = 9
+statusLabel.Font = Enum.Font.Code
+statusLabel.TextXAlignment = Enum.TextXAlignment.Left
+statusLabel.ZIndex = 5
+statusLabel.Parent = mainFrame
+
+local keybindBadge = Instance.new("TextLabel")
+keybindBadge.Size = UDim2.new(1, -20, 0, 16)
+keybindBadge.Position = UDim2.new(0, 10, 0, 216)
+keybindBadge.BackgroundTransparency = 1
+keybindBadge.Text = "Toggle With Q"
+keybindBadge.TextColor3 = Color3.fromRGB(0, 120, 60)
+keybindBadge.TextSize = 8
+keybindBadge.Font = Enum.Font.Code
+keybindBadge.TextXAlignment = Enum.TextXAlignment.Left
+keybindBadge.ZIndex = 5
+keybindBadge.Parent = mainFrame
+
+-- Update Target Avatar Thumbnail
+local function updateTargetAvatar(username)
+	task.spawn(function()
+		pcall(function()
+			local player = Players:FindFirstChild(username)
+			if player then
+				local content, isReady = Players:GetUserThumbnailAsync(player.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size100x100)
+				if isReady and content then
+					avatarImage.Image = content
+				end
+			else
+				avatarImage.Image = "rbxassetid://6031082533"
+			end
+		end)
+	end)
+end
+
+-- TextBox Interactive Effects
+targetBox.Focused:Connect(function()
+	pcall(function()
+		TweenService:Create(inputStroke, TweenInfo.new(0.2), {Color = HYPER_GREEN}):Play()
+		playCyberAudio("rbxassetid://9114223171", 1.8)
+	end)
+end)
+
+targetBox.FocusLost:Connect(function()
+	pcall(function()
+		TweenService:Create(inputStroke, TweenInfo.new(0.2), {Color = Color3.fromRGB(20, 50, 30)}):Play()
+		updateTargetAvatar(targetBox.Text)
+	end)
+end)
+
+targetBox:GetPropertyChangedSignal("Text"):Connect(function()
+	pcall(function()
+		local text = targetBox.Text
+		if #text > 0 then
+			for _, plr in ipairs(Players:GetPlayers()) do
+				if plr ~= LocalPlayer and plr.Name:lower():sub(1, #text) == text:lower() then
+					updateTargetAvatar(plr.Name)
+					break
+				end
+			end
+		end
+	end)
+end)
+
+-- 3D Target Lock via Click
+UserInputService.InputBegan:Connect(function(input, gameProcessed)
+	if gameProcessed then return end
+	if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+		pcall(function()
+			local targetPart = Mouse.Target
+			if targetPart then
+				local char = targetPart:FindFirstAncestorOfClass("Model")
+				if char then
+					local plr = Players:GetPlayerFromCharacter(char)
+					if plr and plr ~= LocalPlayer then
+						targetBox.Text = plr.Name
+						updateTargetAvatar(plr.Name)
+						statusLabel.Text = "SYSTEM // TARGET_LOCKED -> " .. plr.Name:upper()
+						statusLabel.TextColor3 = HYPER_GREEN
+						sendHackerNotif("Target Acquired", "Locked onto " .. plr.Name, HYPER_GREEN)
+					end
+				end
+			end
+		end)
+	end
+end)
+
+-- ================================================================= --
+--           BUTTERY SMOOTH DRAGGING SYSTEM (RENDERSTEPPED)           --
+-- ================================================================= --
+local isDragging = false
+local dragStartPos = Vector2.zero
+local frameStartPos = UDim2.new()
+local dragTargetPos = UDim2.new()
+
+header.InputBegan:Connect(function(input)
+	if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+		isDragging = true
+		dragStartPos = Vector2.new(input.Position.X, input.Position.Y)
+		frameStartPos = mainFrame.Position
+		dragTargetPos = frameStartPos
+	end
+end)
+
+UserInputService.InputChanged:Connect(function(input)
+	if isDragging and (input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch) then
+		local delta = Vector2.new(input.Position.X, input.Position.Y) - dragStartPos
+		dragTargetPos = UDim2.new(frameStartPos.X.Scale, frameStartPos.X.Offset + delta.X, frameStartPos.Y.Scale, frameStartPos.Y.Offset + delta.Y)
+	end
+end)
+
+UserInputService.InputEnded:Connect(function(input)
+	if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+		isDragging = false
+	end
+end)
+
+-- RenderStepped Smooth Lerp Interpolation
+RunService.RenderStepped:Connect(function()
+	if isDragging then
+		mainFrame.Position = mainFrame.Position:Lerp(dragTargetPos, 0.3)
+	end
+end)
+
+-- Button Hover Animations
+execButton.MouseEnter:Connect(function()
+	TweenService:Create(execButton, TweenInfo.new(0.2), {BackgroundColor3 = Color3.fromRGB(0, 255, 170)}):Play()
+end)
+
+execButton.MouseLeave:Connect(function()
+	TweenService:Create(execButton, TweenInfo.new(0.2), {BackgroundColor3 = HYPER_GREEN}):Play()
+end)
+
+-- ================================================================= --
+--         EXACT USER-REQUESTED EXECUTION ENGINE INTEGRATION         --
+-- ================================================================= --
+execButton.MouseButton1Click:Connect(function()
+	pcall(function()
+		playCyberAudio("rbxassetid://9114223171", 1.1)
+		
+		local selectedTarget = targetBox.Text
+		if #selectedTarget == 0 then
+			statusLabel.Text = "SYSTEM // ERROR: NO TARGET SPECIFIED"
+			statusLabel.TextColor3 = ERROR_RED
+			sendHackerNotif("Error", "Select or type a target username!", ERROR_RED)
+			return
+		end
+
+		statusLabel.Text = "Toolkilling!"
+		statusLabel.TextColor3 = Color3.fromRGB(255, 210, 0)
+		sendHackerNotif("Executing", "Toolkilling " .. selectedTarget, Color3.fromRGB(255, 210, 0))
+
+		task.spawn(function()
+			local execSuccess, execErr = pcall(function()
+				-- LINE 1: Dynamic Target Assignment
+				local TargetName = selectedTarget
+
+				local LocalPlayer = game:GetService("Players").LocalPlayer
+				local TargetPlayer = game:GetService("Players"):FindFirstChild(TargetName)
+				
+				-- Substring Fallback Match if typed partially
+				if not TargetPlayer then
+					for _, p in ipairs(game:GetService("Players"):GetPlayers()) do
+						if p.Name:lower():sub(1, #TargetName) == TargetName:lower() then
+							TargetPlayer = p
+							TargetName = p.Name
+							break
+						end
+					end
+				end
+
+				local Character = LocalPlayer.Character
+				if not Character then return end
+
+				local Humanoid = Character:FindFirstChildOfClass("Humanoid")
+				local RootPart = Character:FindFirstChild("HumanoidRootPart")
+				local KillPos = CFrame.new(0, -497.9, 0)
+				local OldPos = Character:GetPivot()
+
+				-- Humanoid Bypass Sequence
+				if Humanoid then
+					Humanoid.Name = "1"
+					local NewHumanoid = Humanoid:Clone()
+					NewHumanoid.Parent = Character
+					NewHumanoid.Name = "Humanoid"
+					
+					task.wait()
+					
+					if Character:FindFirstChild("1") then
+						Character["1"]:Destroy()
+					end
+				end
+
+				if Character:FindFirstChild("Humanoid") then
+					Character.Humanoid:ChangeState(Enum.HumanoidStateType.Physics)
+					game.Workspace.CurrentCamera.CameraSubject = Character
+					if Character:FindFirstChild("Animate") then
+						Character.Animate.Disabled = true
+						task.wait()
+						Character.Animate.Disabled = false
+					end
+					Character.Humanoid.DisplayDistanceType = Enum.HumanoidDisplayDistanceType.None
+				end
+
+				-- Equip Tools from Backpack
+				local backpack = LocalPlayer:FindFirstChildOfClass("Backpack") or LocalPlayer:FindFirstChild("Backpack")
+				local TastyTool = backpack.Water
+				Character.Humanoid:EquipTool(TastyTool)
+
+				local function TeleportToPlayer(pTarget)
+					if pTarget and pTarget.Character and pTarget.Character:FindFirstChild("HumanoidRootPart") and Character:FindFirstChild("HumanoidRootPart") then
+						Character.HumanoidRootPart.CFrame = pTarget.Character.HumanoidRootPart.CFrame * CFrame.new(-1, -1, 0)
+					end
+				end
+
+				if TargetPlayer then
+					TeleportToPlayer(TargetPlayer)
+					task.wait()
+					TeleportToPlayer(TargetPlayer)
+					task.wait()
+
+					if Character and TargetPlayer.Character and TargetPlayer.Character:FindFirstChild("Head") then
+						Character:MoveTo(TargetPlayer.Character.Head.Position)
+					end
+					
+					task.wait(.5)
+					Character:PivotTo(KillPos)
+					task.wait()
+					Character:PivotTo(KillPos)
+					task.wait()
+					Character:PivotTo(KillPos)
+					task.wait()
+					Character:PivotTo(KillPos)
+					task.wait()
+					Character:PivotTo(KillPos)
+					task.wait(1.3)
+
+					-- Fire ReplicatedStorage Remote Safely
+					pcall(function()
+						local serverRemote = game:GetService("ReplicatedStorage"):FindFirstChild("01_server")
+						if serverRemote then
+							serverRemote:FireServer("cmd", "-re")
+						end
+					end)
+
+					task.wait(.31)
+					local Characterr = game.Players.LocalPlayer.Character
+					if Characterr then
+						Characterr:PivotTo(OldPos)
+						task.wait(0.25)
+						Characterr:PivotTo(OldPos)
+					end
+				else
+					warn("Incorrect User: " .. TargetName)
+					error("Player not found: " .. TargetName)
+				end
+			end)
+
+			if execSuccess then
+				statusLabel.Text = "SYSTEM // DEPLOYMENT SUCCESSFUL"
+				statusLabel.TextColor3 = HYPER_GREEN
+				sendHackerNotif("Success", "Payload completed successfully!", HYPER_GREEN)
+			else
+				statusLabel.Text = "SYSTEM // EXECUTION FAILED"
+				statusLabel.TextColor3 = ERROR_RED
+				sendHackerNotif("Error", tostring(execErr), ERROR_RED)
+			end
+		end)
+	end)
+end)
+
+-- Minimize Toggle
+local isMinimized = false
+local function toggleUI()
+	pcall(function()
+		isMinimized = not isMinimized
+		playCyberAudio("rbxassetid://9114223171", 1.5)
+		if isMinimized then
+			TweenService:Create(mainFrame, TweenInfo.new(0.25, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {Size = UDim2.new(0, 320, 0, 48)}):Play()
+			toggleBtn.Text = "[+]"
+		else
+			TweenService:Create(mainFrame, TweenInfo.new(0.25, Enum.EasingStyle.Back, Enum.EasingDirection.Out), {Size = UDim2.new(0, 320, 0, 265)}):Play()
+			toggleBtn.Text = "[-]"
+		end
+	end)
+end
+
+toggleBtn.MouseButton1Click:Connect(toggleUI)
+
+UserInputService.InputBegan:Connect(function(input, gameProcessed)
+	if not gameProcessed and input.KeyCode == Enum.KeyCode.RightShift then
+		toggleUI()
+	end
+end)
+
+sendHackerNotif("ToolKill - By TastyVanillaa", "Gui By oldhacfard, Fixed TP", HYPER_GREEN)
