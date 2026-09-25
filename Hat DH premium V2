@@ -23,7 +23,7 @@ character["dhside1"].Handle.AccessoryWeld:Destroy()
 character["dhside2"].Handle.AccessoryWeld:Destroy()
 game.RunService.Heartbeat:Wait()
 game.TextChatService.TextChannels.RBXGeneral:SendAsync("-net")
-while task.wait() do
+while task.wait(.5) do
 character["dh1"].Handle.Position = root.Position + root.CFrame:VectorToWorldSpace(Vector3.new(0, -1, -2.7))
 character["dh1"].Handle.Orientation = root.Orientation + Vector3.new(90, 0, 0)
 character["dh2"].Handle.Position = root.Position + root.CFrame:VectorToWorldSpace(Vector3.new(-.1, -.95, -7.15))
