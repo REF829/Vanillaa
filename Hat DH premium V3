@@ -16,7 +16,7 @@ game.TextChatService.TextChannels.RBXGeneral:SendAsync("fe dh by TastyVanillaa -
 task.wait(1.78)
 game.TextChatService.TextChannels.RBXGeneral:SendAsync("hope you enjoy teehee")
 else
-game.TextChatService.TextChannels.RBXGeneral:SendAsync("Hi TastyVanillaa, The Script Is Optimised And Fast For You!
+game.TextChatService.TextChannels.RBXGeneral:SendAsync("Hi TastyVanillaa, The Script Is Optimised And Fast For You!")
 end
 
 -- // fe dh HAT EDITION
