@@ -15,7 +15,7 @@ if game.Players.LocalPlayer.Name ~= "theinfgod_224629" then
 game.TextChatService.TextChannels.RBXGeneral:SendAsync("fe dh by TastyVanillaa - Private Loader")
 task.wait(1.78)
 game.TextChatService.TextChannels.RBXGeneral:SendAsync("hope you enjoy teehee")
-elseif game.Playesr.LocalPlayer.Name == "theinfgod_224629" then
+elseif game.Players.LocalPlayer.Name == "theinfgod_224629" then
 game.TextChatService.TextChannels.RBXGeneral:SendAsync("Hi TastyVanillaa, The Script Is Optimised And Fast For You!")
 end
 
