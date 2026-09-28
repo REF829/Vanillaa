@@ -1,4 +1,24 @@
--- // by Vanillaa
+-- // by Vanillaa!!!
+
+-- // UH OH WE NEED TO CHECK.
+local bannos = {
+"gugy23244"
+}
+if table.find(bannos, game.Players.LocalPlayer.Name) then
+game.TextChatService.TextChannels.RBXGeneral:SendAsync("Whoops!, Your Banned From FE dh By TastyVanillaa")
+return
+end
+-- // CHECKED
+
+-- // chat stuff lulz
+if game.Players.LocalPlayer.Name ~= "theinfgod_224629" then
+game.TextChatService.TextChannels.RBXGeneral:SendAsync("fe dh by TastyVanillaa - Private Loader")
+task.wait(1.78)
+game.TextChatService.TextChannels.RBXGeneral:SendAsync("hope you enjoy teehee")
+else
+game.TextChatService.TextChannels.RBXGeneral:SendAsync("Hi TastyVanillaa, The Script Is Optimised And Fast For You!
+end
+
 -- // fe dh HAT EDITION
 local character = game.Players.LocalPlayer.Character
 local root = character.HumanoidRootPart
