@@ -6,6 +6,7 @@ if not identifyexecutor then
 game.TextChatService.TextChannels.RBXGeneral:SendAsync("Not Supported At All")
 return
 end
+local off = false
 local exec = identifyexecutor()
 if string.find(exec, "Delta") or string.find(exec, "Real") then
 game.TextChatService.TextChannels.RBXGeneral:SendAsync("Loaded")
@@ -14,7 +15,15 @@ game.TextChatService.TextChannels.RBXGeneral:SendAsync("May Be Unsupported. Will
 end
 local p = game.Players.LocalPlayer
 local c = p.Character
+p.Chatted:Connect(function(msg)
+if msg:lower() == "-on" then
+off = false
+elseif msg:lower() == "-off" then
+off = true
+end
+end
 c.ChildAdded:Connect(function()
+if off then break end
 for _, abcdefgun in ipairs(c:GetChildren()) do
 if abcdefgun:IsA("Tool") then
 abcdefgun:Destroy()
@@ -22,7 +31,7 @@ c.Humanoid:UnequipTools()
 end
 end
 end)
-while game.RunService.PreRender:wait() do
+while game.RunService.PreRender:wait() and not off do
 for _, abcdefgun in ipairs(c:GetChildren()) do
 if abcdefgun:IsA("Tool") then
 abcdefgun:Destroy()
