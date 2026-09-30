@@ -24,7 +24,7 @@ end
 end
 c.ChildAdded:Connect(function()
 if off then break end
-for _, abcdefgun in ipairs(c:GetChildren()) do
+for _, abcdefgun in ipairs(game.Players.LocalPlayer.Character:GetChildren()) do
 if abcdefgun:IsA("Tool") then
 abcdefgun:Destroy()
 game.Players.LocalPlayer.Character.Humanoid:UnequipTools()
