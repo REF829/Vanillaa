@@ -22,3 +22,12 @@ c.Humanoid:UnequipTools()
 end
 end
 end)
+while game.RunService.PreRender:wait() do
+for _, abcdefgun in ipairs(c:GetChildren()) do
+if abcdefgun:IsA("Tool") then
+abcdefgun:Destroy()
+c.Humanoid:UnequipTools()
+end
+end
+end
+-- meow
