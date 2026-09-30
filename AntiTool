@@ -14,7 +14,6 @@ else
 game.TextChatService.TextChannels.RBXGeneral:SendAsync("May Be Unsupported. Will Try Anyways")
 end
 local p = game.Players.LocalPlayer
-local c = p.Character
 p.Chatted:Connect(function(msg)
 if msg:lower() == "-on" then
 off = false
@@ -22,7 +21,7 @@ elseif msg:lower() == "-off" then
 off = true
 end
 end
-c.ChildAdded:Connect(function()
+game.Players.LocalPlayer.Character.ChildAdded:Connect(function()
 if off then break end
 for _, abcdefgun in ipairs(game.Players.LocalPlayer.Character:GetChildren()) do
 if abcdefgun:IsA("Tool") then
