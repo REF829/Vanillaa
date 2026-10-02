@@ -258,7 +258,7 @@ local titleText = Instance.new("TextLabel")
 titleText.Size = UDim2.new(1, -60, 0, 20)
 titleText.Position = UDim2.new(0, 12, 0, 6)
 titleText.BackgroundTransparency = 1
-titleText.Text = "TastyVanillaa's Cat Eater (Toolkill Gui)"
+titleText.Text = "TastyVanillaa's Cat Eater V3"
 titleText.TextColor3 = HYPER_GREEN
 titleText.TextSize = 11
 titleText.Font = Enum.Font.Code
@@ -286,7 +286,7 @@ local creditsText = Instance.new("TextLabel")
 creditsText.Size = UDim2.new(1, -20, 0, 16)
 creditsText.Position = UDim2.new(0, 12, 0, 26)
 creditsText.BackgroundTransparency = 1
-creditsText.Text = "UI: oldhacfard | Core: tastyVanilaa | System: Online"
+creditsText.Text = "ui by oldhac - toolkill by Tasty"
 creditsText.TextColor3 = Color3.fromRGB(0, 180, 90)
 creditsText.TextSize = 8
 creditsText.Font = Enum.Font.Code
@@ -349,13 +349,21 @@ task.spawn(function()
 		pcall(function()
 			local char = LocalPlayer.Character
 			local backpack = LocalPlayer:FindFirstChildOfClass("Backpack") or LocalPlayer:FindFirstChild("Backpack")
-			local hasTool = (char and char:FindFirstChildOfClass("Tool")) or (backpack and backpack:FindFirstChildOfClass("Tool"))
+			local hasTool = false
+
+			for _, Maybe in ipairs(char:GetChildren()) do
+				if Maybe:IsA("Tool") and Maybe.Name == "Water" then
+					hasTool = true
+				else
+					hasTool = false
+				end
+			end
 			
 			if hasTool then
-				badgeText.Text = "TOOL INVENTORY: READY [" .. hasTool.Name:upper() .. "]"
+				badgeText.Text = "Tool Found"
 				badgeText.TextColor3 = HYPER_GREEN
 			else
-				badgeText.Text = "TOOL INVENTORY: NO TOOL EQUIPPED!"
+				badgeText.Text = "Buy Water"
 				badgeText.TextColor3 = ERROR_RED
 			end
 		end)
@@ -419,7 +427,7 @@ execButton.Name = "ExecButton"
 execButton.Size = UDim2.new(1, -20, 0, 42)
 execButton.Position = UDim2.new(0, 10, 0, 130)
 execButton.BackgroundColor3 = HYPER_GREEN
-execButton.Text = "[ ☣ INITIATE MATRIX ATTACK ☣ ]"
+execButton.Text = "Toolkill"
 execButton.TextColor3 = MATRIX_BG
 execButton.TextSize = 10
 execButton.Font = Enum.Font.Code
@@ -444,7 +452,7 @@ local statusLabel = Instance.new("TextLabel")
 statusLabel.Size = UDim2.new(1, -20, 0, 18)
 statusLabel.Position = UDim2.new(0, 10, 0, 182)
 statusLabel.BackgroundTransparency = 1
-statusLabel.Text = "SYSTEM // IDLE - STANDBY FOR TARGET"
+statusLabel.Text = "Gui Ready"
 statusLabel.TextColor3 = Color3.fromRGB(0, 190, 95)
 statusLabel.TextSize = 9
 statusLabel.Font = Enum.Font.Code
@@ -463,6 +471,7 @@ keybindBadge.Font = Enum.Font.Code
 keybindBadge.TextXAlignment = Enum.TextXAlignment.Left
 keybindBadge.ZIndex = 5
 keybindBadge.Parent = mainFrame
+keybindBadge.Visible = game:GetService("UserInputService").KeyboardEnabled
 
 -- Update Target Avatar Thumbnail
 local function updateTargetAvatar(username)
@@ -523,9 +532,9 @@ UserInputService.InputBegan:Connect(function(input, gameProcessed)
 					if plr and plr ~= LocalPlayer then
 						targetBox.Text = plr.Name
 						updateTargetAvatar(plr.Name)
-						statusLabel.Text = "SYSTEM // TARGET_LOCKED -> " .. plr.Name:upper()
+						statusLabel.Text = "Current Target: " .. plr.Name:upper()
 						statusLabel.TextColor3 = HYPER_GREEN
-						sendHackerNotif("Target Acquired", "Locked onto " .. plr.Name, HYPER_GREEN)
+						sendHackerNotif("Target Set", "Target Name: " .. plr.Name, HYPER_GREEN)
 					end
 				end
 			end
@@ -572,11 +581,11 @@ end)
 
 -- Button Hover Animations
 execButton.MouseEnter:Connect(function()
-	TweenService:Create(execButton, TweenInfo.new(0.2), {BackgroundColor3 = Color3.fromRGB(0, 255, 170)}):Play()
+	TweenService:Create(execButton, TweenInfo.new(0.5), {BackgroundColor3 = Color3.fromRGB(0, 255, 170)}):Play()
 end)
 
 execButton.MouseLeave:Connect(function()
-	TweenService:Create(execButton, TweenInfo.new(0.2), {BackgroundColor3 = HYPER_GREEN}):Play()
+	TweenService:Create(execButton, TweenInfo.new(0.5), {BackgroundColor3 = HYPER_GREEN}):Play()
 end)
 
 -- ================================================================= --
