@@ -653,11 +653,12 @@ execButton.MouseButton1Click:Connect(function()
 				-- Equip Tools from Backpack
 				local backpack = LocalPlayer:FindFirstChildOfClass("Backpack") or LocalPlayer:FindFirstChild("Backpack")
 				local TastyTool = backpack.Water
+				local TastyToolnt = TastyTool.Handle
 				Character.Humanoid:EquipTool(TastyTool)
 
 				local function TeleportToPlayer(pTarget)
 					if pTarget and pTarget.Character and pTarget.Character:FindFirstChild("HumanoidRootPart") and Character:FindFirstChild("HumanoidRootPart") then
-						Character.HumanoidRootPart.CFrame = pTarget.Character.HumanoidRootPart.CFrame * CFrame.new(-1, -1, 0)
+						TastyToolnt:PivotTo(pTarget.Character.HumanoidRootPart.CFrame * CFrame.new(-1, -1, 0))
 					end
 				end
 
@@ -672,15 +673,15 @@ execButton.MouseButton1Click:Connect(function()
 					end
 					
 					task.wait(.5)
-					Character:PivotTo(KillPos)
+					TastyToolnt:PivotTo(KillPos)
 					task.wait()
-					Character:PivotTo(KillPos)
+					TastyToolnt:PivotTo(KillPos)
 					task.wait()
-					Character:PivotTo(KillPos)
+					TastyToolnt:PivotTo(KillPos)
 					task.wait()
-					Character:PivotTo(KillPos)
+					TastyToolnt:PivotTo(KillPos)
 					task.wait()
-					Character:PivotTo(KillPos)
+					TastyToolnt:PivotTo(KillPos)
 					task.wait(1.3)
 
 					-- Fire ReplicatedStorage Remote Safely
