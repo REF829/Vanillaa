@@ -666,13 +666,14 @@ execButton.MouseButton1Click:Connect(function()
 					TeleportToPlayer(TargetPlayer)
 					task.wait()
 					TeleportToPlayer(TargetPlayer)
-					task.wait()
+					task.wait(.1)
+					TeleportToPlayer(TargetPlayer)
 
 					if Character and TargetPlayer.Character and TargetPlayer.Character:FindFirstChild("Head") then
 						Character:MoveTo(TargetPlayer.Character.Head.Position)
 					end
 					
-					task.wait(.5)
+					task.wait(.015)
 					TastyToolnt:PivotTo(KillPos)
 					task.wait()
 					TastyToolnt:PivotTo(KillPos)
@@ -682,7 +683,7 @@ execButton.MouseButton1Click:Connect(function()
 					TastyToolnt:PivotTo(KillPos)
 					task.wait()
 					TastyToolnt:PivotTo(KillPos)
-					task.wait(1.3)
+					task.wait(1)
 
 					-- Fire ReplicatedStorage Remote Safely
 					pcall(function()
@@ -706,11 +707,11 @@ execButton.MouseButton1Click:Connect(function()
 			end)
 
 			if execSuccess then
-				statusLabel.Text = "SYSTEM // DEPLOYMENT SUCCESSFUL"
+				statusLabel.Text = "Tasty / Vanilla Flavoring Was Tasted :>"
 				statusLabel.TextColor3 = HYPER_GREEN
-				sendHackerNotif("Success", "Payload completed successfully!", HYPER_GREEN)
+				sendHackerNotif("Success", "Eaten Target", HYPER_GREEN)
 			else
-				statusLabel.Text = "SYSTEM // EXECUTION FAILED"
+				statusLabel.Text = "Bitter / Failed"
 				statusLabel.TextColor3 = ERROR_RED
 				sendHackerNotif("Error", tostring(execErr), ERROR_RED)
 			end
