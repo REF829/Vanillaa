@@ -269,13 +269,13 @@ titleText.Parent = header
 -- Cyber Glitch Text Animation on Title
 task.spawn(function()
 	local originalText = "TastyVanillaa's Cat Eater (Toolkill Gui)"
-	local glitchTexts = {"Fun Fact: No Facts Are Fun :<", "CATS HAVE BEEN EATEN", "K1LLED SYSTEM"}
+	local glitchTexts = {"Fun Fact: No Facts Are Fun :<", "CATS HAVE BEEN EATEN", "Tasty Farted"}
 	while mainFrame and mainFrame.Parent do
 		task.wait(math.random(4, 8))
 		pcall(function()
 			titleText.Text = glitchTexts[math.random(1, #glitchTexts)]
 			titleText.TextColor3 = NEON_GLOW
-			task.wait(0.2)
+			task.wait(0.33)
 			titleText.Text = originalText
 			titleText.TextColor3 = HYPER_GREEN
 		end)
@@ -348,11 +348,18 @@ task.spawn(function()
 	while mainFrame and mainFrame.Parent do
 		pcall(function()
 			local char = LocalPlayer.Character
-			local backpack = LocalPlayer:FindFirstChildOfClass("Backpack") or LocalPlayer:FindFirstChild("Backpack")
+			local bapa = LocalPlayer:FindFirstChildOfClass("Backpack") or LocalPlayer:FindFirstChild("Backpack")
 			local hasTool = false
 
 			for _, Maybe in ipairs(char:GetChildren()) do
 				if Maybe:IsA("Tool") and Maybe.Name == "Water" then
+					hasTool = true
+				else
+					hasTool = false
+				end
+			end
+			for _, Probably in ipairs(bapa:GetChildren()) do
+				if Probably:IsA("Tool") and Maybe.Name == "Water" then
 					hasTool = true
 				else
 					hasTool = false
