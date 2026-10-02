@@ -1,19 +1,19 @@
 -- ================================================================= --
--- UI Designer: oldhacfard | Owner / TastyVanillaa                   --
--- TastyVanillaa (me)'s Discord Is.. vanillashere                    --
--- W oldhacfard W oldhacfard W oldhacfard W oldhacfard W oldhacfard  --
--- oldhacfard so tuff oldhacfard so tuff oldhacfard so tuff oldhacfa --
--- ard so tuff oldhacfard so tuff oldhacfard so tuff oldhacfard so t --
--- uff oldhacfard so tuff oldhacfard so tuff oldhacfard so tuff oldh --
--- acfard so tuff oldhacfard so tuff oldhacfard so tuff oldhacfard s --
--- o tuff oldhacfard so tuff oldhacfard so tuff oldhacfard so tuff o --
--- ldhacfard so tuff oldhacfard so tuff oldhacfard so tuff oldhacfar --
--- d so tuff oldhacfard so tuff oldhacfard so tuff oldhacfard so tuf --
--- f oldhacfard so tuff oldhacfard so tuff oldhacfard so tuff oldhac --
--- WHY IS OLDHACFARD SO TUFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF --
--- W oldhacfard, literally W.                                        --
--- V4                                                                --
 -- ================================================================= --
+-- ================================================================= --
+-- JOB APPLICATION - JOB APPLICATION - enter personal details        --
+-- JOB APPLICATION - JOB APPLICATION - enter personal details        --
+-- ================================================================= --
+-- UI Designer: oldhacfard | Owner / TastyVanillaa                   --
+-- Call Me Tasty.                                                    --
+-- im the average coder yeah? i spend time outside sometimes         --
+-- i like vanilla ice cream and cheeseborgor :>                      --
+-- well uh.. lets stop the yap.
+-- ================================================================= --
+-- we hope you entered valid information. you will be hired shortly  --
+-- ================================================================= --
+  -- ============================================================= --
+   -- ========================================================== --
 
 local Players = game:GetService("Players")
 local TweenService = game:GetService("TweenService")
