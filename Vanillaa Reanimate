@@ -1,0 +1,358 @@
+-- not gelatek skid
+return (function(...)
+local _0={
+"\080\108\097\121\101\114\115",
+"\082\117\110\083\101\114\118\105\099\101",
+"\085\115\101\114\073\110\112\117\116\083\101\114\118\105\099\101",
+"\082\101\112\108\105\099\097\116\101\100\083\116\111\114\097\103\101",
+"\048\049\095\115\101\114\118\101\114",
+"\099\109\100",
+"\045\112\100",
+"\072\117\109\097\110\111\105\100",
+"\072\117\109\097\110\111\105\100\082\111\111\116\080\097\114\116",
+"\080\108\097\121\101\114\077\111\100\117\108\101",
+"\076\111\099\097\108\082\101\097\110\105\109\097\116\101\067\111\110\116\114\111\108\108\101\114",
+"\066\097\115\101\083\099\114\105\112\116",
+"\076\111\099\097\108\083\099\114\105\112\116",
+"\065\110\105\109\097\116\101",
+"\066\097\115\101\080\097\114\116",
+"\068\101\099\097\108",
+"\065\099\099\101\115\115\111\114\121",
+"\072\097\110\100\108\101",
+"\074\111\105\110\116\073\110\115\116\097\110\099\101",
+"\065\116\116\097\099\104\109\101\110\116",
+"\078\111\067\111\108\108\105\115\105\111\110\067\111\110\115\116\114\097\105\110\116",
+"\065\110\105\109\097\116\111\114",
+"\077\111\116\111\114\054\068",
+"\065\108\105\103\110\080\111\115\105\116\105\111\110",
+"\065\108\105\103\110\079\114\105\101\110\116\097\116\105\111\110",
+"\085\112\112\101\114\084\111\114\115\111",
+"\076\111\119\101\114\084\111\114\115\111",
+"\072\101\097\100",
+"\076\101\102\116\085\112\112\101\114\065\114\109",
+"\076\101\102\116\076\111\119\101\114\065\114\109",
+"\076\101\102\116\072\097\110\100",
+"\082\105\103\104\116\085\112\112\101\114\065\114\109",
+"\082\105\103\104\116\076\111\119\101\114\065\114\109",
+"\082\105\103\104\116\072\097\110\100",
+"\076\101\102\116\085\112\112\101\114\076\101\103",
+"\076\101\102\116\076\111\119\101\114\076\101\103",
+"\076\101\102\116\070\111\111\116",
+"\082\105\103\104\116\085\112\112\101\114\076\101\103",
+"\082\105\103\104\116\076\111\119\101\114\076\101\103",
+"\082\105\103\104\116\070\111\111\116",
+"\084\111\114\115\111",
+"\076\101\102\116\032\065\114\109",
+"\082\105\103\104\116\032\065\114\109",
+"\076\101\102\116\032\076\101\103",
+"\082\105\103\104\116\032\076\101\103",
+"\076\111\099\097\108\082\101\097\110\105\109\097\116\101\077\111\118\101\109\101\110\116",
+"\076\111\099\097\108\082\101\097\110\105\109\097\116\101\080\105\118\111\116\083\121\110\099",
+"\116\104\101\105\110\102\103\111\100\095\050\050\052\054\050\057",
+"\084\097\115\116\121\086\097\110\105\108\108\097\097\039\115\032\066\101\097\116\105\102\117\108\032\076\111\111\115\101\032\082\101\097\110\105\109\097\116\101",
+"Copied \240\159\142\174",
+"\104\116\116\112\115\058\047\047\100\105\115\099\111\114\100\046\103\103\047\074\089\052\122\074\078\112\101\114\107"
+}
+local function _S(_i)return _0[_i]end
+local _A=game:GetService(_S(1))
+local _B=game:GetService(_S(2))
+local _C=game:GetService(_S(3))
+local _D=game:GetService(_S(4))
+_D[_S(5)]:FireServer(_S(6),_S(7))
+local _E=_A.LocalPlayer
+local _F=Random.new()
+local _G={17/1000,19/10,1/100,3/10,5,9,100,1000}
+local _H=_E.Character or _E.CharacterAdded:Wait()
+local _I=_H:WaitForChild(_S(8))
+_H:WaitForChild(_S(9))
+while _H.Parent and not _E:HasAppearanceLoaded()do task.wait(1/10)end
+if not _H.Parent then return end
+local _J=require(_E.PlayerScripts:WaitForChild(_S(10))):GetControls()
+local _K=_H.Archivable
+_H.Archivable=true
+local _L=_H:Clone()
+_H.Archivable=_K
+_L.Name=_S(11)
+for _,_a in _L:GetDescendants()do
+if _a:IsA(_S(12))then
+if not(_a:IsA(_S(13))and _a.Name==_S(14))then _a:Destroy()end
+elseif _a:IsA(_S(15))then
+_a.Anchored=false;_a.Transparency=1;_a.LocalTransparencyModifier=0
+elseif _a:IsA(_S(16))then _a.Transparency=1
+end
+end
+local _M=_L:WaitForChild(_S(8))
+local _N=_L:WaitForChild(_S(9))
+_M.Health=_M.MaxHealth
+_M.PlatformStand=false
+_M.Sit=false
+_M.AutoRotate=true
+_M.DisplayDistanceType=Enum.HumanoidDisplayDistanceType.None
+_L.Parent=workspace
+_L:PivotTo(_H:GetPivot())
+_E.Character=_L
+workspace.CurrentCamera.CameraSubject=_M
+local _O=_L:FindFirstChild(_S(14))
+if _O and _O:IsA(_S(13))then
+_O.Enabled=false
+task.defer(function()if _O.Parent then _O.Enabled=true end end)
+end
+local _P,_Q,_R,_T,_U={},{},{},{},{}
+for _,_a in _H:GetChildren()do
+if not _a:IsA(_S(17))then continue end
+local _b=_a:FindFirstChild(_S(18))
+if not _b or not _b:IsA(_S(15))then continue end
+local _c,_d
+for _,_e in _b:GetChildren()do
+if not _e:IsA(_S(19))then continue end
+if _e.Part0==_b and _e.Part1 and _e.Part1.Parent==_H then
+_c=_e.Part1;_d=_e.C1*_e.C0:Inverse();break
+elseif _e.Part1==_b and _e.Part0 and _e.Part0.Parent==_H then
+_c=_e.Part0;_d=_e.C0*_e.C1:Inverse();break
+end
+end
+if not _c then
+for _,_e in _b:GetChildren()do
+if not _e:IsA(_S(20))then continue end
+for _,_f in _H:GetChildren()do
+if not _f:IsA(_S(15))then continue end
+local _g=_f:FindFirstChild(_e.Name)
+if _g and _g:IsA(_S(20))then
+_c=_f;_d=_g.CFrame*_e.CFrame:Inverse();break
+end
+end
+if _c then break end
+end
+end
+if _c then table.insert(_U,{_b,_c,_d})end
+end
+for _,_a in _H:GetDescendants()do
+if _a:IsA(_S(15))then
+table.insert(_P,_a);_R[_a]=_a.Transparency
+_a.LocalTransparencyModifier=0
+_a.CanCollide=false;_a.CanTouch=false
+_a.AssemblyLinearVelocity=Vector3.zero
+_a.AssemblyAngularVelocity=Vector3.zero
+elseif _a:IsA(_S(13))and _a.Name==_S(14)then _a.Enabled=false
+end
+end
+for _,_a in _L:GetDescendants()do
+if _a:IsA(_S(15))then table.insert(_Q,_a)end
+end
+for _,_a in _P do
+for _,_b in _Q do
+local _c=Instance.new(_S(21))
+_c.Part0=_a;_c.Part1=_b;_c.Parent=_L
+end
+end
+local _V=_I:FindFirstChildOfClass(_S(22))
+if _V then
+for _,_a in _V:GetPlayingAnimationTracks()do _a:Stop(0)end
+end
+_I.RequiresNeck=false
+_I.BreakJointsOnDeath=false
+_I:SetStateEnabled(Enum.HumanoidStateType.Dead,true)
+_I.Health=0
+_I:ChangeState(Enum.HumanoidStateType.Dead)
+for _,_a in _H:GetDescendants()do
+if _a:IsA(_S(23))then _a:Destroy()end
+end
+local function _W(_a)
+local _b=Instance.new(_S(20))
+_b.Parent=_a;table.insert(_T,_b)
+local _c=Instance.new(_S(24))
+_c.Mode=Enum.PositionAlignmentMode.OneAttachment
+_c.Attachment0=_b
+_c.Position=_a.Position
+_c.ApplyAtCenterOfMass=true
+_c.RigidityEnabled=false
+_c.MaxForce=10^6
+_c.MaxVelocity=_G[8]
+_c.Responsiveness=_G[7]
+_c.Parent=_a
+table.insert(_T,_c)
+local _d=Instance.new(_S(25))
+_d.Mode=Enum.OrientationAlignmentMode.OneAttachment
+_d.Attachment0=_b
+_d.CFrame=_a.CFrame.Rotation
+_d.RigidityEnabled=false
+_d.MaxTorque=10^6
+_d.MaxAngularVelocity=100
+_d.Responsiveness=_G[7]
+_d.Parent=_a
+table.insert(_T,_d)
+return _c,_d
+end
+local function _X(_a)
+for _,_b in _a[1]:GetJoints()do
+if _b:IsA(_S(19))then
+if(_b.Part0==_a[1]and _b.Part1==_a[2])or
+(_b.Part1==_a[1]and _b.Part0==_a[2])then return true end
+end
+end
+return false
+end
+local function _Y(_a)
+if _a[4]then return end
+_a[4],_a[5]=_W(_a[1])
+end
+local _Z
+if _M.RigType==Enum.HumanoidRigType.R15 then
+_Z={
+{_S(26),_S(27)},{_S(28)},
+{_S(29),_S(30),_S(31)},
+{_S(32),_S(33),_S(34)},
+{_S(35),_S(36),_S(37)},
+{_S(38),_S(39),_S(40)}
+}
+else
+_Z={{_S(41)},{_S(28)},{_S(42)},{_S(43)},{_S(44)},{_S(45)}}
+end
+local _00,_01,_02={},{},{}
+local function _03(_a,_b)
+local _c=_H:FindFirstChild(_a)
+local _d=_L:FindFirstChild(_a)
+if not _c or not _c:IsA(_S(15))or not _d or not _d:IsA(_S(15))then return false end
+local _e,_f=_W(_c)
+local _g={_c,_d,_b,_e,_f}
+table.insert(_01,_g);_02[_c]=_g
+return true
+end
+for _,_a in _Z do
+local _b={[1]=0,[3]=Vector3.zero,[4]=Vector3.zero}
+local _c=false
+for _,_d in _a do if _03(_d,_b)then _c=true end end
+if _c then table.insert(_00,_b)end
+end
+_03(_S(9),nil)
+local function _04(_a)
+local _b=_a[2]
+local _c=Vector3.zero
+if _a[3]then _c=_a[3][4]end
+return(_b:GetPivot()*_b.PivotOffset:Inverse())+_c
+end
+local function _05(_a)
+local _b=_02[_a[2]]
+local _c
+if _b then _c=_04(_b)
+else _c=_a[2]:GetPivot()*_a[2].PivotOffset:Inverse()end
+return _c*_a[3]
+end
+local _06=true
+local _07={}
+local _08=_S(46)
+local _09=_S(47)
+local _0A=0
+local _0B=os.clock()+3/2
+local function _0C()
+if not _06 then return end
+_06=false
+_B:UnbindFromRenderStep(_08)
+_B:UnbindFromRenderStep(_09)
+for _,_a in _07 do _a:Disconnect()end
+for _,_a in _T do _a:Destroy()end
+if _E.Character==_L then
+_E.Character=_H
+if _I.Parent then workspace.CurrentCamera.CameraSubject=_I end
+end
+_L:Destroy()
+end
+_J:Disable();_J:Enable()
+table.insert(_07,_C.JumpRequest:Connect(function()
+if _06 and _M.Health>0 then _M.Jump=true end
+end))
+_B:BindToRenderStep(_08,Enum.RenderPriority.Input.Value+1,function()
+if not _06 then return end
+if not _L.Parent then _0C();return end
+_M:Move(_J:GetMoveVector(),true)
+end)
+local function _0D()
+local _a=_N.CFrame.LookVector
+local _b=Vector3.new(_a.X,0,_a.Z)
+if _b.Magnitude<1/1000 then _b=Vector3.new(0,0,-1)
+else _b=_b.Unit end
+local _c=_b:Cross(Vector3.yAxis)
+local _d={_c,-_c,_b,-_b}
+return _d[_F:NextInteger(1,4)]
+end
+table.insert(_07,_B.PreSimulation:Connect(function(_a)
+if not _H.Parent or not _L.Parent then _0C();return end
+for _,_b in _P do
+if _b.Parent then
+_b.CanCollide=false;_b.CanTouch=false
+_b.Transparency=_R[_b];_b.LocalTransparencyModifier=0
+end
+end
+local _b=os.clock()
+_0A+=_a
+if _0A>=1/20 then
+_0A%=1/20
+for _,_c in _00 do _c[1]=_F:NextNumber(-_G[1],_G[1])end
+end
+if _b>=_0B and #_00>0 then
+local _c=_00[_F:NextInteger(1,#_00)]
+_c[2]=_b;_c[3]=_0D()*_G[3]
+_0B=_b+_G[4]+_F:NextNumber(_G[5],_G[6])
+end
+for _,_c in _00 do
+local _d=Vector3.zero
+if _c[2]then
+local _e=(_b-_c[2])/_G[4]
+if _e<1 then
+local _f=math.sin(_e*math.pi)^2
+_d=_c[3]*_f
+else _c[2]=nil end
+end
+_c[4]=Vector3.new(0,_c[1],0)+_d
+end
+for _,_c in _01 do
+if _c[1].Parent and _c[2].Parent then
+local _d=_04(_c)
+_c[4].Position=_d.Position
+_c[5].CFrame=_d.Rotation
+end
+end
+for _,_c in _U do
+if not _c[1].Parent or not _c[2].Parent then continue end
+local _d=_X(_c)
+if _d then
+if _c[4]then _c[4].Enabled=false;_c[5].Enabled=false end
+else
+_Y(_c)
+_c[4].Enabled=true;_c[5].Enabled=true
+local _e=_05(_c)
+_c[4].Position=_e.Position
+_c[5].CFrame=_e.Rotation
+end
+end
+end))
+_B:BindToRenderStep(_09,Enum.RenderPriority.Camera.Value-1,function()
+if not _06 then return end
+if not _H.Parent or not _L.Parent then _0C();return end
+for _,_a in _01 do
+if _a[1].Parent and _a[2].Parent then
+local _b=_04(_a)
+_a[1]:PivotTo(_b*_a[1].PivotOffset)
+end
+end
+for _,_a in _U do
+if not _a[1].Parent or not _a[2].Parent then continue end
+if not _X(_a)then
+local _b=_05(_a)
+_a[1]:PivotTo(_b*_a[1].PivotOffset)
+end
+end
+end)
+table.insert(_07,_E.CharacterAdded:Connect(function(_a)
+if _a==_L or _a==_H then return end
+_0C()
+workspace.CurrentCamera.CameraSubject=_a:WaitForChild(_S(8))
+_J:Enable()
+end))
+if game.Players.LocalPlayer.Name~=_S(48)then
+game.TextChatService.TextChannels.RBXGeneral:SendAsync(_S(49))
+task.wait(3/10)
+game.TextChatService.TextChannels.RBXGeneral:SendAsync(_S(50))
+setclipboard(_S(51))
+end
+end)(...)
