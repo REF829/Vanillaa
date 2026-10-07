@@ -22,7 +22,7 @@ end
 -- // fe dh HAT EDITION
 local character = game.Players.LocalPlayer.Character
 local root = character.HumanoidRootPart
-game.TextChatService.TextChannels.RBXGeneral:SendAsync("-gh 113983782251422 113983782251422 16527229831 16527229831")
+game.ReplicatedStorage["01_server"]:FireServer("cmd","-gh 113983782251422 113983782251422 16527229831 16527229831")
 task.wait(1.5)
 -- // Vanillaa's hat renamer
 character["Accessory (Bamboo Stick)"].Name = "dh1"
