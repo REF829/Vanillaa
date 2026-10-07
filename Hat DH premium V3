@@ -2,7 +2,7 @@
 
 -- // UH OH WE NEED TO CHECK.
 local bannos = {
-"gugy23244"
+" "
 }
 if table.find(bannos, game.Players.LocalPlayer.Name) then
 game.TextChatService.TextChannels.RBXGeneral:SendAsync("Whoops!, Your Banned From FE dh By TastyVanillaa")
