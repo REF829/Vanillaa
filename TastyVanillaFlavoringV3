@@ -689,7 +689,7 @@ execButton.MouseButton1Click:Connect(function()
 						Character:MoveTo(TargetPlayer.Character.Head.Position)
 					end
 					
-					task.wait(.015)
+					task.wait(.5)
 					TastyToolnt:PivotTo(KillPos)
 					task.wait()
 					TastyToolnt:PivotTo(KillPos)
@@ -754,7 +754,7 @@ end
 toggleBtn.MouseButton1Click:Connect(toggleUI)
 
 UserInputService.InputBegan:Connect(function(input, gameProcessed)
-	if not gameProcessed and input.KeyCode == Enum.KeyCode.RightShift then
+	if not gameProcessed and input.KeyCode == Enum.KeyCode.q then
 		toggleUI()
 	end
 end)
