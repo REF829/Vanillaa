@@ -670,7 +670,7 @@ execButton.MouseButton1Click:Connect(function()
 				local backpack = LocalPlayer:FindFirstChildOfClass("Backpack") or LocalPlayer:FindFirstChild("Backpack")
 				local TastyTool = backpack.Water
 				local TastyToolnt = TastyTool.Handle
-				local KillPos = CFrame.new(0, -500, 0)
+				local KillPos = CFrame.new(0, -498, 0)
 				Character.Humanoid:EquipTool(TastyTool)
 
 				local function TeleportToPlayer(pTarget)
