@@ -674,7 +674,7 @@ execButton.MouseButton1Click:Connect(function()
 
 				local function TeleportToPlayer(pTarget)
 					if pTarget and pTarget.Character and pTarget.Character:FindFirstChild("HumanoidRootPart") and Character:FindFirstChild("HumanoidRootPart") then
-						TastyToolnt:PivotTo(pTarget.Character.HumanoidRootPart.CFrame * CFrame.new(-1, -1, 0))
+						TastyToolnt:PivotTo(pTarget.Character.Humanoid:GetPivot())
 					end
 				end
 
