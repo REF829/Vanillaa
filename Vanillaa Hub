@@ -1,0 +1,201 @@
+local Luna = loadstring(game:HttpGet("https://raw.githubusercontent.com/Nebula-Softworks/Luna-Interface-Suite/refs/heads/master/source.lua", true))()
+
+local Window = Luna:CreateWindow({
+    Name = "Vanillaa Hub / Beta",
+    Subtitle = nil,
+    LogoID = "82795327169782",
+    LoadingEnabled = true,
+    LoadingTitle = "Vanillaa Is Really Tasty",
+    LoadingSubtitle = "by Team Vanillaa",
+
+    ConfigSettings = {
+        RootFolder = nil,
+        ConfigFolder = "Big Hub"
+    },
+
+    KeySystem = true,
+    KeySettings = {
+        Title = "Key System",
+        Subtitle = "Vanillaa Key System",
+        Note = "Vanillaa, One of the most powerful Team",
+        SaveInRoot = false,
+        SaveKey = false,
+        Key = loadstring(game:HttpGet("https://raw.githubusercontent.com/REF829/Vanillaa/refs/heads/main/fghshsfghfdghfdfgdhhdgf"))(),
+        SecondAction = {
+            Enabled = false,
+            Type = "Link",
+            Parameter = ""
+        }
+    }
+})
+
+local Tab = Window:CreateTab({
+    Name = "JAB",
+    Icon = "view_in_ar",
+    ImageSource = "Material",
+    ShowTitle = false
+})
+local Tab2 = Window:CreateTab({
+    Name = "Utilities",
+    Icon = "view_in_ar",
+    ImageSource = "Material",
+    ShowTitle = false
+})
+local Tab3 = Window:CreateTab({
+    Name = "Pre-Universal",
+    Icon = "view_in_ar",
+    ImageSource = "Material",
+    ShowTitle = false
+})
+local Tab4 = Window:CreateTab({
+    Name = "Universal",
+    Icon = "view_in_ar",
+    ImageSource = "Material",
+    ShowTitle = false
+})
+
+Tab:CreateSection("JAB")
+Tab2:CreateSection("Utilities")
+Tab3:CreateSection("Somewhat Universal")
+Tab4:CreateSection("Universal")
+
+local MS = Tab:CreateButton({
+    Name = "Ms TrueHub",
+    Description = "MS TrueHub - A Decently Sized Hub",
+    Callback = function()
+        loadstring(game:HttpGet("https://scriptblox.com/raw/UP-Just-a-baseplate.-MS-TRUEHUB-229118"))()
+    end
+}, "MsTrueHub")
+local KDhub = Tab:CreateButton({
+    Name = "Krystal Dance Hub",
+    Description = "A Full Script Of Krystal Dance And Random Shit",
+    Callback = function()
+        local RAW_URL = "https://pastebin.com/raw/iCcnPsAT"
+
+local ok, result = pcall(function()
+    local source = game:HttpGet(RAW_URL)
+    local func = loadstring(source)
+
+    if not func then
+        error("script failed to load.")
+    end
+
+    return func()
+end)
+
+if not ok then
+    warn("script is dead idk:", result)
+end
+    end
+}, "KD hub")
+local Uhhhhhh = Tab:CreateButton({
+    Name = "Uhhhhhh",
+    Description = "Uhhhhhh Reanimate - Pure Ass",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/STEVE-916-create/Uhhhhhh/main/source/reanim.lua"))()
+    end
+})
+local UhhhhhhAdvanced = Tab:CreateButton({
+    Name = "Uhhhhhh (Better)",
+    Description = "Better Uhhhhhh Reanimate - Tends To Crash On Ass Executors",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/mxsynry/Uhhhhhh/main/source/reanim.lua"))()
+    end
+}, "Uhh oki")
+local MoonConverts = Tab:CreateButton({
+    Name = "Moon Converts",
+    Description = "A Ton Of Converts. Thats All :>",
+    Callback = function()
+        loadstring(game:HttpGet('https://github.com/CatThatDrinksSprite/moon-convert/raw/main/Scripts/Main/Moon%20Convert.lua', true))()
+    end
+})
+local ServerAdmin = Tab:CreateButton({
+    Name = "Server Admin (FE)",
+    Description = "An Ass But Good Server Admin 'convert'",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Jskfhggjxu/My-Script/refs/heads/main/ServerHacker-X.lua"))()
+    end
+})
+local IY = Tab2:CreateButton({
+    Name = "Infinite Yield",
+    Description = "An Very Ass Utility",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"))()
+    end
+})
+local NA = Tab2:CreateButton({
+    Name = "Nameless Admin",
+    Description = "This Might Get You Off Skidding IY - This Is Superior",
+    Callback = function()
+        loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-Nameless-admin-reworked-75477"))()
+    end
+})
+local GelatekHub = Tab3:CreateButton({
+    Name = "Gelatek Hub",
+    Description = "Reanimate Kinda Broken",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/REF829/Vanillaa/refs/heads/main/SorryITookGelatek"))()
+    end
+})
+local BecomeStrange = Tab3:CreateButton({
+    Name = "Become Strange?",
+    Description = "idk what to even put here..",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/REF829/Vanillaa/refs/heads/main/shit"))()
+    end
+})
+local FElocust = Tab:CreateButton({
+    Name = "FE locust",
+    Description = "Locust - Dr Nowhere / rejoin to disable",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/REF829/Vanillaa/refs/heads/main/crap"))()
+    end
+})
+local Toolkill = Tab:CreateButton({
+    Name = "Toolkill",
+    Description = "By oldhacfard And Vanillaa",
+    Callback = function()
+        if game.Players.LocalPlayer.Name == "theinfgod_224629" or game.Players.LocalPlayer.Name == "ImTheRealJoeInTc" then
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/REF829/Vanillaa/refs/heads/main/TastyVanillaFlavoringV3"))()
+        else
+            Luna:Notification({
+                Title = "TastyVanillaa Mad",
+                Icon = "notifications_active",
+                ImageSource = "Material",
+                Content = "Rude! Join The Discord For It :>"
+            })
+        end
+    end
+})
+local CheckExecutorStats = Tab4:CreateButton({
+    Name = "Check Executor Stats",
+    Description = "BETA - Check Your Executor In Under A Second!",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/REF829/Vanillaa/refs/heads/main/Test%20Executor"))()
+    end
+})
+Luna:Notification({
+    Title = "Vanillaa Hub",
+    Icon = "notifications_active",
+    ImageSource = "Material",
+    Content = "W Fading For Starting This Up. I Edited It A Little :>"
+})
+task.wait(.1)
+setclipboard("JY4zJNperk")
+Luna:Notification({
+    Title = "Vanillaa Hub",
+    Icon = "notifications_active",
+    ImageSource = "Material",
+    Content = "Copied Invite (Discord)"
+})
+Luna:LoadAutoloadConfig()
+-- // DEV NOTE // --
+-- This Script Is --
+-- Almost         --
+-- Specifically   --
+-- For JAB        --
+-- If You Manage  --
+-- To Find Any    --
+-- Bugs Let Us    --
+-- Know.          --
+-- // bye!!!!! // --
