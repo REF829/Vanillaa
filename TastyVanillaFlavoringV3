@@ -682,7 +682,7 @@ execButton.MouseButton1Click:Connect(function()
 					TeleportToPlayer(TargetPlayer)
 					task.wait()
 					TeleportToPlayer(TargetPlayer)
-					task.wait(.1)
+					task.wait(.31)
 					TeleportToPlayer(TargetPlayer)
 
 					if Character and TargetPlayer.Character and TargetPlayer.Character:FindFirstChild("Head") then
@@ -690,7 +690,7 @@ execButton.MouseButton1Click:Connect(function()
 					end
 					
 					task.wait(.23)
-					Character.AssemblyLinearVelocity = Vector3.new(0, -600, 0)
+					Character.HumanoidRootPart.AssemblyLinearVelocity = Vector3.new(0, -600, 0)
 					task.wait(1)
 
 					-- Fire ReplicatedStorage Remote Safely
