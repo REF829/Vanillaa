@@ -670,7 +670,13 @@ execButton.MouseButton1Click:Connect(function()
 				local backpack = LocalPlayer:FindFirstChildOfClass("Backpack") or LocalPlayer:FindFirstChild("Backpack")
 				local TastyTool = backpack.Water
 				local TastyToolnt = TastyTool.Handle
-				local KillPos = CFrame.new(0, -498, 0)
+				local KillPos = CFrame.new(0,-498,0) * CFrame.Angles(math.rad(-90), 0, 0)
+				local temppart = Instance.new("Part")
+				temppart.Size = Vector3.new(1,1,1)
+				temppart.CFrame = Character.Head.CFrame
+				temppart.Parent = workspace
+				temppart.Transparency = 1
+				temppart.Anchored = true
 				Character.Humanoid:EquipTool(TastyTool)
 
 				local function TeleportToPlayer(pTarget)
@@ -680,10 +686,11 @@ execButton.MouseButton1Click:Connect(function()
 				end
 
 				if TargetPlayer then
+					workspace.CurrentCamera.CameraSubject = temppart
 					TeleportToPlayer(TargetPlayer)
 					task.wait()
 					TeleportToPlayer(TargetPlayer)
-					task.wait(.31)
+					task.wait(.1)
 					TeleportToPlayer(TargetPlayer)
 
 					if Character and TargetPlayer.Character and TargetPlayer.Character:FindFirstChild("Head") then
@@ -730,6 +737,7 @@ execButton.MouseButton1Click:Connect(function()
 						Characterr:PivotTo(OldPos)
 						task.wait(0.1)
 						Characterr:PivotTo(OldPos)
+						game.CurrentCamera.CameraSubject = Characterr:WaitForChild("Humanoid")
 					end
 				else
 					warn("Incorrect User: " .. TargetName)
