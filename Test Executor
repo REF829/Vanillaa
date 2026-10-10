@@ -1,0 +1,45 @@
+local checked = 0
+
+local add = function()
+checked = checked + 1
+end
+local sendnotification = function(num, x)
+if x == 1 then
+game.StarterGui:SetCore("SendNotification",{
+    Title = "Executor Test",
+    Text = "Executor Level: "..num,
+    Duration = 5,
+})
+else
+game.StarterGui:SetCore("SendNotification",{
+    Title = "Executor Test",
+    Text = "Executor Passed "..num.." Checks",
+    Duration = 5,
+})
+task.wait(.1)
+game.StarterGui:SetCore("SendNotification",{
+    Title = "Executor Test",
+    Text = "This Script Normally Tests 5",
+    Duration = 5,
+})
+end
+end
+
+if getidentity then
+add()
+end
+if replicatesignal then
+add()
+end
+if get_fps_cap then
+add()
+end
+if setfpscap then
+add()
+end
+if setidentity then
+add()
+end
+sendnotification(getidentity(),1)
+task.wait(.1)
+sendnotification(checked,2)
