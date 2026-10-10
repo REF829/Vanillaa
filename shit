@@ -1,0 +1,511 @@
+_G.MusicTheme = "133806234085573"
+
+
+
+
+-------------------------------------------------------
+
+
+game:GetService("StarterGui"):SetCore("SendNotification", {
+    Title = "Script Made By Victor",
+    Text = "this script made by my see my YouTube chanel",
+    Duration = 4
+})
+
+
+game:GetService("StarterGui"):SetCore("SendNotification", {
+    Title = "Bye :)",
+    Text = "goodbye have a Nice day :)",
+    Button1 = "Tysm",
+    Button2 = "Ok",
+    Duration = 4
+})
+
+-- [[ Variables ]]
+local TweenService = game:GetService("TweenService")
+local RunService = game:GetService("RunService")
+local Lighting = game:GetService("Lighting")
+
+local Players = game:GetService("Players")
+local Player = Players.LocalPlayer
+local Character = Player.Character
+local Humanoid = Character:FindFirstChildOfClass("Humanoid")
+
+local Cam = workspace.CurrentCamera
+
+local expDb = false
+local AnglesWalk = 0
+local Speed = 0
+local Pose = "Idle"
+local IsAttacking = false
+
+local MusicLol = Instance.new("Sound", workspace)
+MusicLol.Name = "MusicLol"
+MusicLol.SoundId = "rbxassetid://" .. _G.MusicTheme
+MusicLol.Looped = true
+MusicLol.Volume = 1
+
+local RunSound = Instance.new("Sound", workspace)
+RunSound.SoundId = "rbxassetid://0"
+RunSound.PlaybackSpeed = 1
+RunSound.Volume = 2
+RunSound.Looped = true
+
+Character.Animate.Disabled = true
+
+if Humanoid.RigType == Enum.HumanoidRigType.R6 then
+    Character["Torso"]:FindFirstChild("Right Shoulder"):Destroy()
+    Character["Torso"]:FindFirstChild("Left Shoulder"):Destroy()
+    Character["Torso"]:FindFirstChild("Right Hip"):Destroy()
+    Character["Torso"]:FindFirstChild("Left Hip"):Destroy()
+    Character["HumanoidRootPart"]:FindFirstChild("RootJoint"):Destroy()
+end
+
+local rig = game:GetObjects("rbxassetid://5195737219")[1]
+rig.Name = "Dummy"
+rig.Parent = Character
+
+rig.HumanoidRootPart.Anchored = false
+rig.Humanoid.WalkSpeed = 50
+rig.Humanoid.JumpPower = 40
+
+workspace.CurrentCamera.CameraSubject = rig
+
+rig.HumanoidRootPart.CFrame = Character.HumanoidRootPart.CFrame
+
+
+local LeftArm = rig.Torso["Left Shoulder"]
+local RightArm = rig.Torso["Right Shoulder"]
+local LeftLeg = rig.Torso["Left Hip"]
+local RightLeg = rig.Torso["Right Hip"]
+
+local function MoveTween(obj, time, goal)
+    local info = TweenInfo.new(time, Enum.EasingStyle.Linear)
+
+    local tween = TweenService:Create(obj, info, goal)
+    tween:Play()
+end
+
+function cf(part,rigpart)
+    part:ApplyImpulse(Vector3.new(0, 100, 0))
+    part.CFrame = rigpart.CFrame
+end
+
+Collision = RunService.Stepped:Connect(function()
+    for i,v in pairs(Character:GetChildren()) do
+        if v:IsA("BasePart") then
+            v.CanCollide = false
+        end
+    end
+end)
+
+CFLoop = RunService.Heartbeat:Connect(function()
+    if not rig then
+        CFLoop:Disconnect()
+        Collision:Disconnect()
+    end
+    rig.Humanoid.Jump = Humanoid.Jump
+    
+    if not IsAttacking then
+        rig.Humanoid:Move(Humanoid.MoveDirection)
+    end
+    
+    cf(Character["Torso"],rig["Torso"])
+    cf(Character["Left Arm"],rig["Left Arm"])
+    cf(Character["Right Arm"],rig["Right Arm"])
+    cf(Character["Left Leg"],rig["Left Leg"])
+    cf(Character["Right Leg"],rig["Right Leg"])
+    cf(Character["HumanoidRootPart"],rig["HumanoidRootPart"])
+end)
+
+local function Sound(Id, Volume)
+    local sound = Instance.new("Sound", workspace)
+    sound.SoundId = "rbxassetid://" .. Id
+    sound.Volume = Volume
+    sound:Play()
+
+    task.delay(10, function()
+        sound:Destroy()
+    end)
+end
+
+local function Explosion(Pos)
+    if expDb == false then
+        expDb = true
+        
+        task.delay(0.5, function()
+            expDb = false
+        end)
+        
+        local frames = {
+        8253082821,
+        8253082708,
+        8253082616,
+        8253082519,
+        8253082188,
+        8253082038,
+        8253081892,
+        8253081713,
+        8253081573,
+        8253081480,
+        8253081394,
+        8253081303,
+        8253081193,
+        8253081027
+        }
+        
+        local exp = Instance.new("Part", workspace)
+        exp.CanCollide = false
+        exp.Anchored = true
+        exp.Size = Vector3.new(1, 1, 1)
+        exp.Transparency = 1
+        exp.Position = Pos
+        
+        local Billboard = Instance.new("BillboardGui", exp)
+        Billboard.Size = UDim2.new(10, 0, 10, 0)
+        
+        local Image = Instance.new("ImageLabel")
+        Image.AnchorPoint = Vector2.new(0.5, 0.5)
+        Image.Position = UDim2.new(0.5, 0, 0.5, 0)
+        Image.Size = UDim2.new(1, 0, 1, 0)
+        Image.Image = "rbxassetid://8253082821"
+        Image.BackgroundTransparency = 1
+        Image.Parent = Billboard
+        
+        local sound = Instance.new("Sound", exp)
+        sound.SoundId = "rbxassetid://114262262294281"
+        sound.Volume = 2
+        sound:Play()
+        
+        task.spawn(function()
+            for _, ImageId in pairs(frames) do
+                Image.Image = "rbxassetid://" .. ImageId
+                wait(0.1)
+            end
+            
+            exp:Destroy()
+        end)  
+    end
+end
+
+local function ClosestHrp(rigHRP)
+    local target, maxDist = nil, math.huge
+    
+    for _, p in ipairs(Players:GetPlayers()) do
+        if p ~= Player and p.Character and p.Character:FindFirstChild("HumanoidRootPart") then
+            local hrp = p.Character.HumanoidRootPart
+            local Dist = (rigHRP.Position - hrp.Position).Magnitude
+            if Dist < maxDist then
+                maxDist = Dist
+                target = hrp
+            end
+        end
+    end
+    
+    return target
+end
+
+local function RandomMeme()
+  local Memes = {
+    116510116675657, 14860288483, 12714983455, 112191230980248, 9004403396,
+    116510116675657, 11656382265, 8922687555, 5622902852, 11152980984,
+    133665957492325, 13740270793, 117017699044372, 104767158927017, 5974928099,
+    109878671712472, 18809286738, 7866490119, 9835676490, 11818627057,
+    8373881910, 10180628683, 10838111675, 13645587757, 18460696546,
+    92153833201864, 100051343281753, 17859596405, 100303765549166, 13174595895,
+    7177690394, 15947320529, 135933876476448, 129561562488456, 6711205728,
+    10197667210, 137325646289155, 9864413306, 14843658190, 12605228448,
+    11040132315, 10271776147, 6862780932, 12325582095, 12727213881,
+    4867871306, 14943344479, 17268864233, 12880163225, 12616601402,
+    70974192379256, 134373383915077, 13058706260, 13491075722, 18539767361,
+    11887281547, 72161482612585
+  }
+
+  local Result = Memes[math.random(1, #Memes)]
+  local Image = "rbxassetid://" .. Result
+  return Image
+end
+
+local function CreateTool(toolName, Tooltip, cooldownTime, callback)
+    local tool = Instance.new("Tool", Player.Backpack)
+    tool.Name = toolName
+    tool.ToolTip = Tooltip
+    tool.RequiresHandle = false
+    tool.ManualActivationOnly = false
+    tool.CanBeDropped = false
+
+    local isReady = true
+
+    tool.Equipped:Connect(function()
+        tool.Parent = Player.Backpack
+    end)
+
+    tool.Equipped:Connect(function()
+        if not isReady then return end
+        isReady = false
+
+        task.spawn(callback)
+
+        task.spawn(function()
+            for i = cooldownTime, 1, -1 do
+                tool.Name = toolName .. " (" .. i .. "s)"
+                task.wait(1)
+            end
+            tool.Name = toolName
+            isReady = true
+        end)
+    end)
+end
+
+-- attack function why is too hard bro 4hours just to make this
+CreateTool("Attack", "ATACKKKKK", 10, function()
+    IsAttacking = true
+    rig.Humanoid.WalkSpeed = 70
+
+    Sound("115130102707678", 2)
+
+    local duration = 3
+    local endTime = os.clock() + duration
+
+    while os.clock() < endTime and rig and rig:FindFirstChild("Humanoid") do
+        local target = ClosestHrp(rig.HumanoidRootPart)
+        if target then
+            rig.Humanoid:MoveTo(target.Position)
+        end
+        task.wait(0.05)
+    end
+
+    rig.Humanoid.WalkSpeed = 50
+    IsAttacking = false
+end)
+
+CreateTool("Dash", "my parkour abilitys is soo cool", 5, function()
+    if rig and rig:FindFirstChild("HumanoidRootPart") then
+        Sound("126862391298039", 1.5) 
+        local forwardDirection = rig.HumanoidRootPart.CFrame.LookVector
+        local dashForce = (forwardDirection * 2500) + Vector3.new(0, 400, 0)
+        rig.HumanoidRootPart:ApplyImpulse(dashForce)
+    end
+end)
+
+CreateTool("Sniff", "HMmmm Chesse, mlg", 30, function()
+    Sound("138546285249641", 2)
+    wait(10)
+    Sound("134488958673979", 2)
+
+    for _, plr in pairs(game.Players:GetPlayers()) do
+        if plr ~= Player and plr.Character and plr.Character:FindFirstChild("HumanoidRootPart") then
+            local Billboard = Instance.new("BillboardGui", plr.Character.HumanoidRootPart)
+            Billboard.Size = UDim2.new(7, 0, 7, 0)
+            Billboard.AlwaysOnTop = true
+
+            task.delay(30, function()
+                Billboard:Destroy()
+            end)
+
+            local Image = Instance.new("ImageLabel")
+            Image.AnchorPoint = Vector2.new(0.5, 0.5)
+            Image.Position = UDim2.new(0.5, 0, 0.5, 0)
+            Image.Size = UDim2.new(1, 0, 1, 0)
+            Image.Image = RandomMeme()
+            Image.BackgroundTransparency = 1
+            Image.ImageTransparency = 1
+            Image.Parent = Billboard
+
+            task.spawn(function()
+                MoveTween(Image, 2, {ImageTransparency = 0})
+                task.wait(26)
+                MoveTween(Image, 2, {ImageTransparency = 1})
+            end)
+        end
+    end
+end)
+
+local UsingAdrenaline = false
+
+CreateTool("Adrenaline", "WOOOOOOOO", 25, function()
+    UsingAdrenaline = true
+    local Number = math.random(0, 5)
+    print(Number)
+
+    rig.Humanoid.WalkSpeed = 1
+
+    MoveTween(Cam, 2, {FieldOfView = 20})
+    Sound("119767131809349", 2)
+    wait(2.5)
+
+    if Number > 0 then
+        Sound("138197880726909", 2)
+        rig.Torso:ApplyImpulse(Vector3.new(0, 400, 0))
+
+        task.spawn(function()
+            for i = 1, 20 do
+                rig.Humanoid.WalkSpeed = 120
+                wait(1)
+            end
+        end)
+
+        MoveTween(Cam, 0.3, {FieldOfView = 160})
+        wait(20)
+        MoveTween(Cam, 2, {FieldOfView = 70})
+        MoveTween(rig.Humanoid, 2, {WalkSpeed = 50})
+        Sound("140007222940724", 2)
+        wait(2)
+        UsingAdrenaline = false
+    else
+        Sound("4052209177", 2)
+        rig.Torso:ApplyImpulse(Vector3.new(0, 600, 0))
+
+        task.spawn(function()
+            for i = 1, 20 do
+                rig.Humanoid.WalkSpeed = 300
+                wait(1)
+            end
+        end)
+
+        MoveTween(Cam, 0.3, {FieldOfView = 190})
+        wait(20)
+        MoveTween(Cam, 3, {FieldOfView = 70})
+        MoveTween(rig.Humanoid, 3, {WalkSpeed = 50})
+        Sound("140007222940724", 2)
+        wait(3)
+        UsingAdrenaline = false
+    end
+end)
+
+local UsingJump = false
+
+CreateTool("Jump", "LETS GO TO SUN", 15, function()
+    UsingJump = true
+    local Number = math.random(0, 4)
+    print(Number)
+
+    rig.Humanoid.WalkSpeed = 1
+
+    MoveTween(Cam, 2, {FieldOfView = 45})
+    Sound("119767131809349", 2)
+    wait(2.5)
+
+    if Number > 0 then
+        Sound("93815419052244", 2)
+        rig.Torso:ApplyImpulse(Vector3.new(0, 3000, 0))
+        rig.Humanoid.WalkSpeed = 50
+        MoveTween(Cam, 0.3, {FieldOfView = 90})
+        wait(0.3)
+        MoveTween(Cam, 2, {FieldOfView = 70})
+        wait(2)
+        UsingJump = false
+    else
+        Sound("135669001382610", 2)
+        rig.Torso:ApplyImpulse(Vector3.new(0, 500, 0))
+        rig.Humanoid.WalkSpeed = 50
+        MoveTween(Cam, 1, {FieldOfView = 70})
+        wait(2)
+        UsingJump = false
+    end
+end)
+
+CreateTool("Theme", "Hehehe start, Get The Power", 1, function()
+    if workspace.MusicLol.Playing == true then
+        workspace.MusicLol.Playing = false
+    else
+        workspace.MusicLol.Playing = true
+    end
+end)
+
+local IsIdle = false
+local function idle(Speed)
+    while true do
+        if Pose == "Idle" then
+            if UsingAdrenaline == false and UsingJump == false then
+                MoveTween(Cam, 0.2, {FieldOfView = 70})
+            end
+            MoveTween(rig.Humanoid, 0.1, {HipHeight = -1})
+            MoveTween(LeftArm, 0.1, {C0 = CFrame.new(-2, 1.5, -0.5) * CFrame.Angles(math.rad(90), math.rad(90), math.rad(0))})
+            MoveTween(RightArm, 0.1, {C0 = CFrame.new(1, 1.5, -0.5) * CFrame.Angles(math.rad(90), math.rad(90), math.rad(0))})
+
+
+            MoveTween(rig.HumanoidRootPart.RootJoint, 0.1, {C0 = CFrame.new(0, 0, 0) * CFrame.Angles(math.rad(0), math.rad(180), math.rad(0))})
+            MoveTween(LeftLeg, 0.1, {C0 = CFrame.new(-1, -1, 0) * CFrame.Angles(math.rad(90), math.rad(90), math.rad(0))})
+            MoveTween(RightLeg, 0.1, {C0 = CFrame.new(2, -1, 0) * CFrame.Angles(math.rad(90), math.rad(90), math.rad(0))})
+            wait(0.1)
+        else
+            break
+        end
+    end
+end
+
+local IsRunning = false
+local function Running()
+    while true do
+        if Pose == "Running" then
+            if UsingAdrenaline == false and UsingJump == false then
+                MoveTween(Cam, 0.2, {FieldOfView = 72})
+            end
+
+            MoveTween(rig.Humanoid, 0.1, {HipHeight = -1})
+            MoveTween(rig.HumanoidRootPart.RootJoint, 0.1, {C0 = CFrame.new(0, 0, 0) * CFrame.Angles(math.rad(0), math.rad(180), math.rad(0))})
+            MoveTween(LeftLeg, 0.1, {C0 = CFrame.new(-1, -1, 0) * CFrame.Angles(math.rad(0), math.rad(90), math.rad(AnglesWalk))})
+            MoveTween(RightLeg, 0.1, {C0 = CFrame.new(2, -1, 0) * CFrame.Angles(math.rad(0), math.rad(90), math.rad(AnglesWalk))})
+
+            MoveTween(rig.HumanoidRootPart.RootJoint, 0.1, {C0 = CFrame.new(0, 0, 0) * CFrame.Angles(math.rad(0), math.rad(180), math.rad(0))})
+            MoveTween(LeftArm, 0.1, {C0 = CFrame.new(-2, 1.5, 0) * CFrame.Angles(math.rad(0), math.rad(90), math.rad(AnglesWalk))})
+            MoveTween(RightArm, 0.1, {C0 = CFrame.new(1, 1.5, 0) * CFrame.Angles(math.rad(0), math.rad(90), math.rad(AnglesWalk))})
+
+            AnglesWalk = AnglesWalk - (Speed * 2)
+            wait(0.1)
+        else
+            break
+        end
+    end
+end
+
+local function Jump()
+    while true do
+        if Pose == "Jumping" then
+
+            wait(1)
+        else
+            break
+        end
+    end
+end
+
+local function OnRunning(speed)
+    Speed = speed
+
+    if speed > 0.5 then
+        RunSound.Playing = true
+        if Pose ~= "Running" then
+            Pose = "Running"
+            Running()
+        end
+    else
+        RunSound.Playing = false
+        if Pose ~= "Idle" then
+            Pose = "Idle"
+            idle()
+        end
+    end
+end
+
+local function OnJumping()
+    if Pose ~= "Jumping" then
+        Pose = "Jumping"
+        Jump()
+    end
+end
+
+rig.Humanoid.Running:Connect(OnRunning)
+rig.Humanoid.Jumping:Connect(OnJumping)
+
+rig.HumanoidRootPart.Touched:Connect(function(hit)
+    if hit.Parent ~= rig and hit.Parent ~= Character and hit:IsA("Part") and hit.Parent:FindFirstChild("Humanoid") then
+        Explosion(hit.Parent.HumanoidRootPart.Position)
+    end
+end)
+
+Humanoid.Died:Connect(function()
+    RunSound:Destroy()
+    MusicLol:Destroy()
+end)
