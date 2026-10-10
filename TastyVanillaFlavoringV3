@@ -734,9 +734,9 @@ execButton.MouseButton1Click:Connect(function()
 					task.wait(.17)
 					local Characterr = game.Players.LocalPlayer.Character
 					if Characterr then
-						Characterr:PivotTo(OldPos)
+						Characterr:PivotTo(OldPos * CFrame.new(0, 1, 0))
 						task.wait(0.1)
-						Characterr:PivotTo(OldPos)
+						Characterr:PivotTo(OldPos * CFrame.new(0, 1, 0))
 					end
 				else
 					warn("Incorrect User: " .. TargetName)
