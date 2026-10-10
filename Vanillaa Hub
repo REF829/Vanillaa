@@ -1,7 +1,7 @@
 local Luna = loadstring(game:HttpGet("https://raw.githubusercontent.com/Nebula-Softworks/Luna-Interface-Suite/refs/heads/master/source.lua", true))()
 
 local Window = Luna:CreateWindow({
-    Name = "Vanillaa Hub / V1.0.0",
+    Name = "Vanillaa Hub / Beta",
     Subtitle = nil,
     LogoID = "82795327169782",
     LoadingEnabled = true,
@@ -53,11 +53,17 @@ local Tab4 = Window:CreateTab({
     ImageSource = "Material",
     ShowTitle = false
 })
-
+local Tab5 = Window:CreateTab({
+    Name = "Vanillaa's Shit",
+    Icon = "view_in_ar",
+    ImageSource = "Material",
+    ShowTitle = false
+})
 Tab:CreateSection("JAB")
 Tab2:CreateSection("Utilities")
 Tab3:CreateSection("Somewhat Universal")
 Tab4:CreateSection("Universal")
+Tab5:CreateSection("Vanillas Shit")
 
 local MS = Tab:CreateButton({
     Name = "Ms TrueHub",
@@ -151,7 +157,7 @@ local FElocust = Tab:CreateButton({
         loadstring(game:HttpGet("https://raw.githubusercontent.com/REF829/Vanillaa/refs/heads/main/crap"))()
     end
 })
-local Toolkill = Tab:CreateButton({
+local Toolkill = Tab5:CreateButton({
     Name = "Toolkill",
     Description = "By oldhacfard And Vanillaa",
     Callback = function()
@@ -167,11 +173,18 @@ local Toolkill = Tab:CreateButton({
         end
     end
 })
-local CheckExecutorStats = Tab4:CreateButton({
+local CheckExecutorStats = Tab5:CreateButton({
     Name = "Check Executor Stats",
     Description = "BETA - Check Your Executor In Under A Second!",
     Callback = function()
         loadstring(game:HttpGet("https://raw.githubusercontent.com/REF829/Vanillaa/refs/heads/main/Test%20Executor"))()
+    end
+})
+local VanillaaRenim = Tab5:CreateButton({
+    Name = "Vanillaa Reanimate",
+    Description = "No Jitter?! (May Look Weird On The Server (Others Screens))",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/REF829/Vanillaa/refs/heads/main/ActualReanimate"))()
     end
 })
 Luna:Notification({
