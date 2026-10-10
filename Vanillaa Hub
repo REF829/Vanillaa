@@ -127,7 +127,7 @@ local NA = Tab2:CreateButton({
     Name = "Nameless Admin",
     Description = "This Might Get You Off Skidding IY - This Is Superior",
     Callback = function()
-        loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-Nameless-admin-reworked-75477"))()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/FilteringEnabled/NamelessAdmin/main/Source"))()
     end
 })
 local GelatekHub = Tab3:CreateButton({
