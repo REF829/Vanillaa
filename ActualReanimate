@@ -67,7 +67,7 @@ local function gp(parent, name, className)
     return nil
 end
 
-local v3_xz, v3_net = v3(1, 0, 1), v3(1, 1, 1)
+local v3_xz, v3_net = v3(15, 0, 15), v3(1, 1, 1)
 local function getNetlessVelocity(realPartVelocity) --edit this if you have a better netless method
     if realPartVelocity.Magnitude < 0.1 then return v3_net end
     return realPartVelocity * v3_xz + v3_net
