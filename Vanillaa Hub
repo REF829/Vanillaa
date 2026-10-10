@@ -182,7 +182,7 @@ local CheckExecutorStats = Tab5:CreateButton({
 })
 local VanillaaRenim = Tab5:CreateButton({
     Name = "Vanillaa Reanimate",
-    Description = "No Jitter?! (May Look Weird On The Server (Others Screens))",
+    Description = "Ass Custom Reanimate",
     Callback = function()
         loadstring(game:HttpGet("https://raw.githubusercontent.com/REF829/Vanillaa/refs/heads/main/ActualReanimate"))()
     end
