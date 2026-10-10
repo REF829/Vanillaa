@@ -690,15 +690,7 @@ execButton.MouseButton1Click:Connect(function()
 					end
 					
 					task.wait(.23)
-					TastyToolnt:PivotTo(KillPos)
-					task.wait()
-					TastyToolnt:PivotTo(KillPos)
-					task.wait()
-					TastyToolnt:PivotTo(KillPos)
-					task.wait()
-					TastyToolnt:PivotTo(KillPos)
-					task.wait()
-					TastyToolnt:PivotTo(KillPos)
+					Character.AssemblyLinearVelocity = Vector3.new(0, -600, 0)
 					task.wait(1)
 
 					-- Fire ReplicatedStorage Remote Safely
@@ -709,11 +701,11 @@ execButton.MouseButton1Click:Connect(function()
 						end
 					end)
 
-					task.wait(.31)
+					task.wait(.17)
 					local Characterr = game.Players.LocalPlayer.Character
 					if Characterr then
 						Characterr:PivotTo(OldPos)
-						task.wait(0.25)
+						task.wait(0.1)
 						Characterr:PivotTo(OldPos)
 					end
 				else
