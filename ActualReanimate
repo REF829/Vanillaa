@@ -2,7 +2,7 @@ game.ReplicatedStorage["01_server"]:FireServer("cmd", "-net")
 task.wait(0.2)
 --the code that looks trash and works great
 local healthHide = false --moves your head away every 3 seconds so players dont see your health bar (alignmode 4 only)
-local reclaim = false --if you lost control over a part this will move your primary part to the part so you get it back (alignmode 4)
+local reclaim = true --if you lost control over a part this will move your primary part to the part so you get it back (alignmode 4)
 local novoid = true --prevents parts from going under workspace.FallenPartsDestroyHeight if you control them (alignmode 4 only)
 local physp = nil --PhysicalProperties.new(0.01, 0, 1, 0, 0) --sets .CustomPhysicalProperties to this for each part
 local noclipAllParts = true --set it to true if you want noclip
@@ -14,7 +14,7 @@ local hatcollide = true --makes hats cancollide (credit to ShownApe) (works only
 local humState16 = true --enables collisions for limbs before the humanoid dies (using hum:ChangeState)
 local addtools = false --puts all tools from backpack to character and lets you hold them after reanimation
 local hedafterneck = true --disable aligns for head and enable after neck or torso is removed
-local simrad = 493 --simulation radius with sethiddenproperty (nil to disable)
+local simrad = 50000 --simulation radius with sethiddenproperty (nil to disable)
 local loadtime = game:GetService("Players").RespawnTime + 0.5 --anti respawn delay
 local method = 3 --reanimation method
 --methods:
@@ -67,7 +67,7 @@ local function gp(parent, name, className)
     return nil
 end
 
-local v3_xz, v3_net = v3(1, 0, 1), v3(0.1, 25.1, 0.1)
+local v3_xz, v3_net = v3(1, 0, 1), v3(1, 1, 1)
 local function getNetlessVelocity(realPartVelocity) --edit this if you have a better netless method
     if realPartVelocity.Magnitude < 0.1 then return v3_net end
     return realPartVelocity * v3_xz + v3_net
@@ -88,7 +88,8 @@ healthHide = healthHide and ((method == 0) or (method == 2) or (method == 3)) an
 
 local reclaim, lostpart = reclaim and c.PrimaryPart, nil
 
-local v3_hide = v3(0, 3000, 0)
+--local v3_hide = v3(0, 3000, 0)
+local v3_hide = v3_xz
 local function align(Part0, Part1)
     
     local att0 = Instance.new("Attachment")
@@ -878,7 +879,7 @@ if flingpart0 and flingpart1 then
         end
     end
 
-    task.wait(loadtime)
+    task.wait(1)
 
     game:GetService('ReplicatedStorage'):WaitForChild('01_server'):FireServer('cmd', '-net ')
 end
