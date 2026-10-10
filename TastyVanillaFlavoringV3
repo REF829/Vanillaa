@@ -689,8 +689,8 @@ execButton.MouseButton1Click:Connect(function()
 						Character:MoveTo(TargetPlayer.Character.Head.Position)
 					end
 					
-					task.wait(.23)
-					Character.Torso.AssemblyLinearVelocity = Vector3.new(0, -600, 0)
+					task.wait(.27)
+					Character.Torso.AssemblyLinearVelocity = Vector3.new(0, 600000000000000, 0)
 					task.wait(1)
 
 					-- Fire ReplicatedStorage Remote Safely
