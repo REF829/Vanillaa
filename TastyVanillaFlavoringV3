@@ -737,7 +737,6 @@ execButton.MouseButton1Click:Connect(function()
 						Characterr:PivotTo(OldPos)
 						task.wait(0.1)
 						Characterr:PivotTo(OldPos)
-						game.CurrentCamera.CameraSubject = Characterr:WaitForChild("Humanoid")
 					end
 				else
 					warn("Incorrect User: " .. TargetName)
