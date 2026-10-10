@@ -690,7 +690,7 @@ execButton.MouseButton1Click:Connect(function()
 					end
 					
 					task.wait(.23)
-					Character.HumanoidRootPart.AssemblyLinearVelocity = Vector3.new(0, -600, 0)
+					Character.Torso.AssemblyLinearVelocity = Vector3.new(0, -600, 0)
 					task.wait(1)
 
 					-- Fire ReplicatedStorage Remote Safely
