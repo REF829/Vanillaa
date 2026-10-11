@@ -7,7 +7,7 @@ local arm = character["Right Arm"]
 local arm2 = character["Left Arm"]
 local torso = character.Torso
 torso["Right Shoulder"]:Destroy()
-while task.wait() do
+while task.wait(.3) do
 arm.CFrame = arm2.CFrame * CFrame.new(3, 0, 0)
 arm.AssemblyLinearVelocity = Vector3.zero
 arm.AssemblyAngularVelocity = Vector3.zero
