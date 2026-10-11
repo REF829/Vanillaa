@@ -737,6 +737,11 @@ execButton.MouseButton1Click:Connect(function()
 						Characterr:PivotTo(OldPos * CFrame.new(0, 1, 0))
 						task.wait(0.1)
 						Characterr:PivotTo(OldPos * CFrame.new(0, 1, 0))
+						task.wait(0.1)
+						Characterr:PivotTo(OldPos * CFrame.new(0, 1, 0))
+						task.wait(0.1)
+						Characterr:PivotTo(OldPos * CFrame.new(0, 1, 0))
+						temppart:Destroy()
 					end
 				else
 					warn("Incorrect User: " .. TargetName)
@@ -745,7 +750,7 @@ execButton.MouseButton1Click:Connect(function()
 			end)
 
 			if execSuccess then
-				statusLabel.Text = "Tasty / Vanilla Flavoring Was Tasted :>"
+				statusLabel.Text = "Sweet / Success"
 				statusLabel.TextColor3 = HYPER_GREEN
 				sendHackerNotif("Success", "Eaten Target", HYPER_GREEN)
 			else
