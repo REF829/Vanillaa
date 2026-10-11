@@ -697,7 +697,7 @@ execButton.MouseButton1Click:Connect(function()
 						Character:MoveTo(TargetPlayer.Character.Head.Position)
 					end
 					
-					task.wait(.075)
+					task.wait(.085)
 					TastyToolnt:PivotTo(KillPos)
 					task.wait()
 					TastyToolnt:PivotTo(KillPos)
