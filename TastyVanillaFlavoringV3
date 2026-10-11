@@ -751,11 +751,15 @@ execButton.MouseButton1Click:Connect(function()
 					pcall(function()
 						local serverRemote = game:GetService("ReplicatedStorage"):FindFirstChild("01_server")
 						if serverRemote then
-							serverRemote:FireServer("cmd", "-re")
+							serverRemote:FireServer("cmd", "-gr")
+							task.wait(.1)
+							serverRemote:FireServer("cmd", "-gr")
 						end
 					end)
 
-					task.wait(.3)
+					game.Players.LocalPlayer.CharacterAdded:Connect(function()
+					if once then end elseif not once then
+					once = true
 					local Characterr = game.Players.LocalPlayer.Character
 					if Characterr then
 						temppart:Destroy()
@@ -784,10 +788,12 @@ execButton.MouseButton1Click:Connect(function()
 						Characterr:PivotTo(OldPos * CFrame.new(0, 1, 0))
 						task.wait()
 					end
+					end
 				else
 					warn("Incorrect User: " .. TargetName)
 					error("Player not found: " .. TargetName)
 				end
+				end)
 			end)
 
 			if execSuccess then
