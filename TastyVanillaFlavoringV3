@@ -758,7 +758,7 @@ execButton.MouseButton1Click:Connect(function()
 					end)
 
 					game.Players.LocalPlayer.CharacterAdded:Connect(function()
-					if once then end elseif not once then
+					if not once then
 					once = true
 					local Characterr = game.Players.LocalPlayer.Character
 					if Characterr then
@@ -789,6 +789,7 @@ execButton.MouseButton1Click:Connect(function()
 						task.wait()
 					end
 					end
+					end)
 				else
 					warn("Incorrect User: " .. TargetName)
 					error("Player not found: " .. TargetName)
