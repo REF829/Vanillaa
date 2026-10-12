@@ -198,7 +198,7 @@ local DeltaShit = Tab6:CreateButton({
     Name = "Delta Customizations",
     Description = "A Good Thing For Delta, Enhances Your UI",
     Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/REF829/Vanillaa/refs/heads/main/DeltaCustomizationKeepSecretsss")
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/REF829/Vanillaa/refs/heads/main/DeltaCustomizationKeepSecretsss"))()
     end
 })
 Luna:Notification({
