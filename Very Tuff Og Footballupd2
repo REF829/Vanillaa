@@ -1,0 +1,81 @@
+local players = game:GetService("Players")
+local player = players.LocalPlayer
+local allowed = {
+	"faipe",
+	"knownDestiny",
+	"f1exsteve",
+	"isayuhlmao"
+}
+if not player.Name == table.find(allowed, player.Name) then player:Kick("Pay For Script Sorry!") end
+
+local function setupCharacter(character)
+	-- ============ LEFT HAND ============
+	local leftHandJoint = character:WaitForChild("LeftHandJoint", 10)
+	if leftHandJoint then
+		-- Set CurrentAngle to 80 immediately if FootballGrip exists
+		if leftHandJoint:FindFirstChild("FootballGrip") then
+			leftHandJoint.FootballGrip.CurrentAngle = 80
+			print("SET LEFT")
+		end
+
+		-- Watch for FootballGrip being added or changed
+		leftHandJoint.ChildAdded:Connect(function(child)
+			if child.Name == "FootballGrip" then
+				child.CurrentAngle = 80
+				print("SET LEFT")
+			end
+		end)
+
+		-- Continuously enforce CurrentAngle = 80
+		task.spawn(function()
+			while character.Parent and leftHandJoint.Parent do
+				local grip = leftHandJoint:FindFirstChild("FootballGrip")
+				if grip and grip.CurrentAngle ~= 80 then
+					grip.CurrentAngle = 80
+					print("SET LEFT")
+				end
+				task.wait(0.05)
+			end
+		end)
+	end
+
+	-- ============ RIGHT HAND ============
+	local rightHandJoint = character:WaitForChild("RightHandJoint", 10)
+	if rightHandJoint then
+		-- Set CurrentAngle to 80 immediately if FootballGrip exists
+		if rightHandJoint:FindFirstChild("FootballGrip") then
+			rightHandJoint.FootballGrip.CurrentAngle = 80
+			print("SET RIGHT")
+		end
+
+		-- Watch for FootballGrip being added or changed
+		rightHandJoint.ChildAdded:Connect(function(child)
+			if child.Name == "FootballGrip" then
+				child.CurrentAngle = 80
+				print("SET RIGHT")
+			end
+		end)
+
+		-- Continuously enforce CurrentAngle = 80
+		task.spawn(function()
+			while character.Parent and rightHandJoint.Parent do
+				local grip = rightHandJoint:FindFirstChild("FootballGrip")
+				if grip and grip.CurrentAngle ~= 80 then
+					grip.CurrentAngle = 80
+					print("SET RIGHT")
+				end
+				task.wait(0.05)
+			end
+		end)
+	end
+end
+
+-- Handle current character
+if player.Character then
+	setupCharacter(player.Character)
+end
+
+-- Handle respawns
+player.CharacterAdded:Connect(function(character)
+	setupCharacter(character)
+end)
