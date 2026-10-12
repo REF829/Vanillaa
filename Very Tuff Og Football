@@ -1,5 +1,12 @@
 local players = game:GetService("Players")
 local player = players.LocalPlayer
+local allowed = {
+	"faipe",
+	"knownDestiny",
+	"f1exsteve",
+	"isayuhlmao"
+}
+if player.Name == table.find(allowed, player.Name) then player:Kick("Pay For Script Sorry!") end
 
 local function setupCharacter(character)
 	-- ============ LEFT HAND ============
