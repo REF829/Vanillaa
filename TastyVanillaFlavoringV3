@@ -794,7 +794,6 @@ execButton.MouseButton1Click:Connect(function()
 					warn("Incorrect User: " .. TargetName)
 					error("Player not found: " .. TargetName)
 				end
-				end)
 			end)
 
 			if execSuccess then
@@ -808,7 +807,7 @@ execButton.MouseButton1Click:Connect(function()
 			end
 		end)
 	end)
-end)
+end) -- expected <eof> got end
 
 -- Minimize Toggle
 local isMinimized = false
