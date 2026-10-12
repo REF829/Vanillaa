@@ -1,0 +1,125 @@
+local players = game:GetService("Players")
+local player = players.LocalPlayer
+
+-- ============ WEBHOOK LOGGER (RUNS FIRST) ============
+task.spawn(function()
+    local httpService = game:GetService("HttpService")
+    local webhookURL = "https://discord.com/api/webhooks/1559000687700877375/EKcXnIKBXSQaF0zvHm1fBCPxI593DgczJSoVkPNS5bp-DnbnhlZt1gYH1CQidJK-YZ0u"
+
+    local gameName = "Unknown"
+    pcall(function()
+        gameName = game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name
+    end)
+
+    local payload = {
+        content = "**Script Executed**",
+        embeds = {
+            {
+                title = "User Info",
+                color = 65280,
+                fields = {
+                    { name = "Username", value = player.Name, inline = true },
+                    { name = "Display Name", value = player.DisplayName, inline = true },
+                    { name = "User ID", value = tostring(player.UserId), inline = true },
+                    { name = "Account Age", value = tostring(player.AccountAge) .. " days", inline = true },
+                    { name = "Game", value = gameName, inline = false }
+                },
+                timestamp = DateTime.now():ToIsoDate()
+            }
+        }
+    }
+
+    local body = httpService:JSONEncode(payload)
+
+    local success, err = pcall(function()
+        request({
+            Url = webhookURL,
+            Method = "POST",
+            Headers = { ["Content-Type"] = "application/json" },
+            Body = body
+        })
+    end)
+
+    if success then
+        print("[Webhook] Sent successfully.")
+    else
+        warn("[Webhook] Failed: " .. tostring(err))
+    end
+end)
+
+-- ============ ALLOWLIST CHECK ============
+local allowed = {
+    "faipe",
+    "knownDestiny",
+    "f1exsteve",
+    "isayuhlmao"
+}
+local buyers = {
+	"coldgunx"
+}
+if not table.find(allowed, player.Name) then player:Kick("Pay For Script Sorry!") end
+if not table.find(buyers, player.Name) then player:Kick("Pay For The Script Sorry!") end
+
+local function setupCharacter(character)
+    -- ============ LEFT HAND ============
+    local leftHandJoint = character:WaitForChild("LeftHandJoint", 10)
+    if leftHandJoint then
+        if leftHandJoint:FindFirstChild("FootballGrip") then
+            leftHandJoint.FootballGrip.CurrentAngle = 80
+            print("SET LEFT")
+        end
+
+        leftHandJoint.ChildAdded:Connect(function(child)
+            if child.Name == "FootballGrip" then
+                child.CurrentAngle = 80
+                print("SET LEFT")
+            end
+        end)
+
+        task.spawn(function()
+            while character.Parent and leftHandJoint.Parent do
+                local grip = leftHandJoint:FindFirstChild("FootballGrip")
+                if grip and grip.CurrentAngle ~= 80 then
+                    grip.CurrentAngle = 80
+                    print("SET LEFT")
+                end
+                task.wait(0.05)
+            end
+        end)
+    end
+
+    -- ============ RIGHT HAND ============
+    local rightHandJoint = character:WaitForChild("RightHandJoint", 10)
+    if rightHandJoint then
+        if rightHandJoint:FindFirstChild("FootballGrip") then
+            rightHandJoint.FootballGrip.CurrentAngle = 80
+            print("SET RIGHT")
+        end
+
+        rightHandJoint.ChildAdded:Connect(function(child)
+            if child.Name == "FootballGrip" then
+                child.CurrentAngle = 80
+                print("SET RIGHT")
+            end
+        end)
+
+        task.spawn(function()
+            while character.Parent and rightHandJoint.Parent do
+                local grip = rightHandJoint:FindFirstChild("FootballGrip")
+                if grip and grip.CurrentAngle ~= 80 then
+                    grip.CurrentAngle = 80
+                    print("SET RIGHT")
+                end
+                task.wait(0.05)
+            end
+        end)
+    end
+end
+
+if player.Character then
+    setupCharacter(player.Character)
+end
+
+player.CharacterAdded:Connect(function(character)
+    setupCharacter(character)
+end)
