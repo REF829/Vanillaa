@@ -59,11 +59,18 @@ local Tab5 = Window:CreateTab({
     ImageSource = "Material",
     ShowTitle = false
 })
+local Tab6 = Window:CreateTab({
+    Name = "Delta Shit",
+    Icon = "view_in_ar",
+    ImageSource = "Material",
+    ShowTitle = false
+end
 Tab:CreateSection("JAB")
 Tab2:CreateSection("Utilities")
 Tab3:CreateSection("Somewhat Universal")
 Tab4:CreateSection("Universal")
 Tab5:CreateSection("Vanillas Shit")
+Tab6:CreateSection("Some Delta Shit")
 
 local MS = Tab:CreateButton({
     Name = "Ms TrueHub",
@@ -185,6 +192,13 @@ local VanillaaRenim = Tab5:CreateButton({
     Description = "Ass Custom Reanimate",
     Callback = function()
         loadstring(game:HttpGet("https://raw.githubusercontent.com/REF829/Vanillaa/refs/heads/main/ActualReanimate"))()
+    end
+})
+local DeltaShit = Tab6:CreateButton({
+    Name = "Delta Customizations",
+    Description = "A Good Thing For Delta, Enhances Your UI",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/REF829/Vanillaa/refs/heads/main/DeltaCustomizationKeepSecretsss")
     end
 })
 Luna:Notification({
