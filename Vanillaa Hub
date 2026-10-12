@@ -64,7 +64,7 @@ local Tab6 = Window:CreateTab({
     Icon = "view_in_ar",
     ImageSource = "Material",
     ShowTitle = false
-end
+})
 Tab:CreateSection("JAB")
 Tab2:CreateSection("Utilities")
 Tab3:CreateSection("Somewhat Universal")
