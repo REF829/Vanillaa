@@ -761,7 +761,7 @@ execButton.MouseButton1Click:Connect(function()
 					game.Players.LocalPlayer.CharacterAdded:Connect(function()
 					if not once then
 					once = true
-					task.wait(.2)
+					task.wait(.5)
 					local Characterr = game.Players.LocalPlayer.Character
 					if Characterr then
 						temppart:Destroy()
