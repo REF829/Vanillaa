@@ -600,6 +600,7 @@ end)
 -- ================================================================= --
 execButton.MouseButton1Click:Connect(function()
 	pcall(function()
+		once = false
 		playCyberAudio("rbxassetid://9114223171", 1.1)
 		
 		local selectedTarget = targetBox.Text
