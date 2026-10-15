@@ -1,0 +1,12 @@
+local players=game:GetService("Players")
+local player=players.LocalPlayer
+local character=player.Character
+local foundaccessories=0
+print("Checking Accessories")
+for _,ipairs in ipairs(character:GetChildren())do
+if ipairs:IsA("Accessory") then
+foundaccessories=foundaccessories+1
+print(ipairs.Name)
+end
+end
+print("Amount Found: "..foundaccessories)
