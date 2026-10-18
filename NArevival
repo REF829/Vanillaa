@@ -1,4 +1,4 @@
-method = "source"
+local method = "source"
 -- [[
   methods
 1. loadstring - unreliable, may get killed any moment
