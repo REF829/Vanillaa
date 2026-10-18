@@ -1,5 +1,5 @@
 local method = "source"
--- [[
+--[[
   methods
 1. loadstring - unreliable, may get killed any moment
 2. source - reliable, forces a load
