@@ -1,3 +1,4 @@
+game.TextChatService.TextChannels.RBXGeneral:SendAsync("-net")
 if game.Players.LocalPlayer.Name == "theinfgod_224629" or game.Players.LocalPlayer.Name == "Reaper6838" then else
 task.wait()
 game.TextChatService.TextChannels.RBXGeneral:SendAsync("This Script Is Not Mine!")
