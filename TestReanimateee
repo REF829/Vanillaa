@@ -77,7 +77,7 @@ local setxzvel
 if fling == true then
 setxzvel = 999999999999
 elseif fling == false then
-setvxvel = 300
+setvxvel = 1
 end
 local v3_xz, v3_net = v3(setxzvel, 0, setxzvel), v3(25, 25, 25)
 local function getNetlessVelocity(realPartVelocity)
