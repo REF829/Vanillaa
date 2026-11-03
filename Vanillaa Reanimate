@@ -1,13 +1,13 @@
-game.TextChatService.TextChannels.RBXGeneral:SendAsync("-net")
-task.wait(.5)
-game.TextChatService.TextChannels.RBXGeneral:SendAsync("Vanillaa's Super Tuff Reanimate (Ts Not Tuff)")
+--i have stage 15643892 brain damage.
+--im tastycatvainlaah haih
+--translated from super braindamagi language:
+--i have stage 15643892 brain damage.
+--im tastycatvanillaa hi
+game.TextChatService.TextChannels.RBXGeneral:SendAsync("Vanillaa Reanimate - Beta")
 if game.Players.LocalPlayer.Name == "theinfgod_224629" or game.Players.LocalPlayer.Name == "Reaper6838" then else
 task.wait()
 game.TextChatService.TextChannels.RBXGeneral:SendAsync("This Script Is Not Mine!")
 end
-task.wait(.1)
-warn("SUPER SO VERY TUFF REANIMATE YESSSSS NO JITTER NO SETTING REAJHJHGHJKAEGHBERAHJGBREAHBGAER")
---the code that looks trash and works great
 local healthHide = false --moves your head away every 3 seconds so players dont see your health bar (alignmode 4 only)
 local reclaim = true --if you lost control over a part this will move your primary part to the part so you get it back (alignmode 4)
 local novoid = true --prevents parts from going under workspace.FallenPartsDestroyHeight if you control them (alignmode 4 only)
@@ -16,34 +16,36 @@ local noclipAllParts = true --set it to true if you want noclip
 local antiragdoll = true --removes hingeConstraints and ballSocketConstraints from your character
 local newanimate = true --disables the animate script and enables after reanimation
 local discharscripts = true --disables all localScripts parented to your character before reanimation
-local R15toR6 = true --tries to convert your character to r6 if its r15
+local R15toR6 = false --tries to convert your character to r6 if its r15
 local hatcollide = true --makes hats cancollide (credit to ShownApe) (works only with reanimate method 0)
 local humState16 = true --enables collisions for limbs before the humanoid dies (using hum:ChangeState)
 local addtools = true --puts all tools from backpack to character and lets you hold them after reanimation
 local hedafterneck = true --disable aligns for head and enable after neck or torso is removed
-local simrad = .003 --simulation radius with sethiddenproperty (nil to disable)
+local simrad = 10 --simulation radius with sethiddenproperty (nil to disable)
 local loadtime = game:GetService("Players").RespawnTime + 0.5 --anti respawn delay
-local fling = true --toggle this to (if enabled it jitters atleast not a crap ton lulz) fling people -yes very guud
-local method = 3 --reanimation method
+local fling = falseq --toggle this to (if enabled it jitters atleast not a crap ton lulz) fling people -yes very guud
+local clickfling = false --FAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHhhh
+
+
+local method = 6 --reanimation method
 --methods:
---0 - breakJoints (takes [loadtime] seconds to load)
---1 - limbs
---2 - limbs + anti respawn
---3 - limbs + breakJoints after [loadtime] seconds
---4 - remove humanoid + breakJoints
---5 - remove humanoid + limbs
+--0 - Prison Life | breakJoints (takes [loadtime] seconds to load) | Loosest
+--1 - Universal | Limbs | Very Loose
+--2 - Universal | Force Align Limbs + Breakjoints + Anti Respawn | Loose
+--3 - Prison Life | Force Align Limbs + Breakjoints | Not Loose
+--4 - Universal | No Humanoid + Breakjoints | Depends On Game
+--5 - Universal | No Humanoid + Anti Respawn | Tight
+--6 - Just A Baseplate | PD + Breakjoints | Very Loose
+--7 - Universal | No Permadeath Or Attemps Of Permadeath | Tight | IMPORTANT: Neck May Move Not Move On Other Screens
+
 local alignmode = 4 --AlignPosition mode
 --modes:
---1 - AlignPosition rigidity enabled true
---2 - 2 AlignPositions rigidity enabled both true and false
---3 - AlignPosition rigidity enabled false
---4 - no AlignPosition, CFrame only
-local flingpart = "HumanoidRootPart" --name of the part or the hat used for flinging
---the fling function
---usage: fling(target, duration, velocity)
---target can be set to: basePart, CFrame, Vector3, character model or humanoid (flings at mouse.Hit if argument not provided)
---duration (fling time in seconds) can be set to a number or a string convertable to a number (0.5s if not provided)
---velocity (fling part rotation velocity) can be set to a vector3 value (Vector3.new(20000, 20000, 20000) if not provided)
+--1 - Universal | Rigidity Enabled
+--2 - Universal | 2 Ridigities Enabled And Disabled
+--3 - Just A Baseplate | No Rigidity
+--4 - Universal | no AlignPosition, CFrame only
+
+local flingpart = "HumanoidRootPart"
 
 local lp = game:GetService("Players").LocalPlayer
 local rs, ws, sg = game:GetService("RunService"), game:GetService("Workspace"), game:GetService("StarterGui")
@@ -76,13 +78,15 @@ local function gp(parent, name, className)
 end
 
 local setxzvel
-if fling == true then
-setxzvel = 999999999999
-elseif fling == false then
-setvxvel = 30
+if fling then
+setxzvel = 3000
+else
+setxzvel = 5
 end
-local v3_xz, v3_net = v3(setxzvel, 0, setxzvel), v3(25, 25, 25)
+
+local v3_xz, v3_net = v3(setxzvel, setxzvel, setxzvel), v3(25, 25, 25)
 local function getNetlessVelocity(realPartVelocity)
+    -- net less
     if realPartVelocity.Magnitude < 0.1 then return v3_net end
     return realPartVelocity * v3_xz + v3_net
 end
@@ -125,7 +129,7 @@ local function align(Part0, Part1)
             end)
         end
         
-        local rot = rad(0.05)
+        local rot = rad(.05)
         local con0, con1 = nil, nil
         con0 = stepped:Connect(function()
             if not (Part0 and Part1) then return con0:Disconnect() and con1:Disconnect() end
@@ -139,18 +143,8 @@ local function align(Part0, Part1)
                     lostpart = nil
                 end
                 local newcf = Part1.CFrame * att1.CFrame
-                --[[local vel = (newcf.Position - lastpos) / delta
-                Part0.Velocity = getNetlessVelocity(vel)]]
-                -- test zone  --
-                local vel = (newcf.Position - lastpos) / math.max(delta, 1 / 240)
-
-                local maxFollowSpeed = 60 -- experimental cap, studs/sec
-                if vel.Magnitude > maxFollowSpeed then
-                    vel = vel.Unit * maxFollowSpeed
-                end
-
+                local vel = (newcf.Position - lastpos) / delta
                 Part0.Velocity = getNetlessVelocity(vel)
-                -- test zone --
                 if vel.Magnitude < 1 then
                     rot = -rot
                     newcf *= angles(0, 0, rot)
@@ -205,7 +199,7 @@ local function align(Part0, Part1)
         con1 = heartbeat:Connect(function(delta)
             if not (Part0 and Part1) then return con0:Disconnect() and con1:Disconnect() end
             vel = Part0.Velocity
-            Part0.Velocity = getNetlessVelocity((Part1.Position - lastpos) / delta)
+            --Part0.Velocity = getNetlessVelocity((Part1.Position - lastpos) / delta)
             lastpos = Part1.Position
         end)
     
@@ -250,6 +244,7 @@ end
 local destroyhum = (method == 4) or (method == 5)
 local breakjoints = (method == 0) or (method == 4)
 local antirespawn = (method == 0) or (method == 2) or (method == 3)
+local vanillaastyle = (method == 6)
 
 hatcollide = hatcollide and (method == 0)
 
@@ -360,6 +355,24 @@ if hatcollide then
 end
 
 local model = Instance.new("Model", c)
+for i, v in pairs(c:GetDescendants()) do
+    if v and v.Parent and (not v:IsDescendantOf(model)) then
+        if v:IsA("Decal") then
+            v.Transparency = 1
+        elseif v:IsA("BasePart") then
+            v.Transparency = 1
+            v.Anchored = false
+        elseif v:IsA("MeshPart") then
+            v.Transparency = 1
+        elseif v:IsA("ForceField") then
+            v.Visible = false
+        elseif v:IsA("Sound") then
+            v.Playing = false
+        elseif v:IsA("BillboardGui") or v:IsA("SurfaceGui") or v:IsA("ParticleEmitter") or v:IsA("Fire") or v:IsA("Smoke") or v:IsA("Sparkles") then
+            v.Enabled = false
+        end
+    end
+end
 model.Name = "Vanillaa Reanimate"
 model:GetPropertyChangedSignal("Parent"):Connect(function()
     if not (model and model.Parent) then
@@ -407,6 +420,11 @@ else
     end
     if method == 3 then
         task.delay(loadtime, pcall, model.BreakJoints, model)
+    end
+    if method == 6 then
+        game.ReplicatedStorage["01_server"]:FireServer("cmd","-pd")
+        task.wait(.25)
+        c:BreakJoints()
     end
 end
 
@@ -460,23 +478,6 @@ for i, scr in pairs(model:GetDescendants()) do
                     end
                 end
             end
-        end
-    end
-end
-
-for i, v in pairs(c:GetDescendants()) do
-    if v and v.Parent and (not v:IsDescendantOf(model)) then
-        if v:IsA("Decal") then
-            v.Transparency = 1
-        elseif v:IsA("BasePart") then
-            v.Transparency = 1
-            v.Anchored = false
-        elseif v:IsA("ForceField") then
-            v.Visible = false
-        elseif v:IsA("Sound") then
-            v.Playing = false
-        elseif v:IsA("BillboardGui") or v:IsA("SurfaceGui") or v:IsA("ParticleEmitter") or v:IsA("Fire") or v:IsA("Smoke") or v:IsA("Sparkles") then
-            v.Enabled = false
         end
     end
 end
@@ -898,6 +899,8 @@ if flingpart0 and flingpart1 then
     game:GetService('ReplicatedStorage'):WaitForChild('01_server'):FireServer('cmd', '-net ')
 end
 
+if clickfling then
 lp:GetMouse().Button1Down:Connect(fling) --click fling
+end
 --by a skid named Vanillaa
 --hahheeaaeehaheheahea
