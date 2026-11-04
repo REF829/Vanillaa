@@ -1,33 +1,9 @@
-game.TextChatService.TextChannels.RBXGeneral:SendAsync("Vanillaa Uhhhhhh..... Replicator?")
-task.wait()
-local yes
-if not game.Workspace:FindFirstChild("(C) Uhhhhhh V1.1.0 DEV (Modded)") then
-yes = game.Workspace:FindFirstChild("(C) Uhhhhhh V1.0.9 BETA")
-elseif not game.Workspace:FindFirstChild("(C) Uhhhhhh V1.1.0 DEV (Modded)") then
-warn("BRO FIND SOMETHING")
-else
-yes = game.Workspace:FindFirstChild("(C) Uhhhhhh V1.1.0 DEV (Modded)")
-end
-if game.Players.LocalPlayer.Character.Humanoid.RigType == Enum.HumanoidRigType.R15 then
-if yes.Humanoid.HipHeight ~= game.Players.LocalPlayer.Character.Humanoid.HipHeight - 2 then
-game.TextChatService.TextChannels.RBXGeneral:SendAsync("Fixing R15 Height")
-local calculatedheight = game.Players.LocalPlayer.Character.Humanoid.HipHeight - 2
-yes.Humanoid.HipHeight = calculatedheight
-task.wait()
-end
-elseif game.Players.LocalPlayer.Character.Humanoid.RigType == Enum.HumanoidRigType.R6 then
-if yes.Humanoid.HipHeight ~= 0 then
-game.TextChatService.TextChannels.RBXGeneral:SendAsync("Fixing R6 Height *This Height Issue Happens If You Ran R15 Before.")
-yes.Humanoid.HipHeight = 0
-task.wait()
-end
-end
-game.TextChatService.TextChannels.RBXGeneral:SendAsync("Reanimating")
 --i have stage 15643892 brain damage.
 --im tastycatvainlaah haih
 --translated from super braindamagi language:
 --i have stage 15643892 brain damage.
 --im tastycatvanillaa hi
+game.TextChatService.TextChannels.RBXGeneral:SendAsync("Vanillaa Reanimate - Beta")
 if game.Players.LocalPlayer.Name == "theinfgod_224629" or game.Players.LocalPlayer.Name == "Reaper6838" then else
 task.wait()
 game.TextChatService.TextChannels.RBXGeneral:SendAsync("This Script Is Not Mine!")
@@ -47,17 +23,16 @@ local addtools = true --puts all tools from backpack to character and lets you h
 local hedafterneck = true --disable aligns for head and enable after neck or torso is removed
 local simrad = 10 --simulation radius with sethiddenproperty (nil to disable)
 local loadtime = game:GetService("Players").RespawnTime + 0.5 --anti respawn delay
-local fling = false --toggle this to (if enabled it jitters atleast not a crap ton lulz) fling people -yes very guud
-local jitternofling = true -- sorry bro this disables fling but who aint like a lil jitter eh?
-if jitternofling then fling = false end
+local fling = falseq --toggle this to (if enabled it jitters atleast not a crap ton lulz) fling people -yes very guud
 local clickfling = false --FAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHhhh
 
-local method = 6
+
+local method = 6 --reanimation method
 --methods:
 --0 - Prison Life | breakJoints (takes [loadtime] seconds to load) | Loosest
 --1 - Universal | Limbs | Very Loose
 --2 - Universal | Force Align Limbs + Breakjoints + Anti Respawn | Loose
---3 - Prison Life / Just A Baseplate | Force Align Limbs + Breakjoints | Not Loose
+--3 - Prison Life | Force Align Limbs + Breakjoints | Not Loose
 --4 - Universal | No Humanoid + Breakjoints | Depends On Game
 --5 - Universal | No Humanoid + Anti Respawn | Tight
 --6 - Just A Baseplate | PD + Breakjoints | Very Loose
@@ -105,16 +80,11 @@ end
 local setxzvel
 if fling then
 setxzvel = 3000
-setyvel = 3000
-elseif jitternofling then
-setxzvel = 9.5
-setyvel = 125
 else
-setxzvel = 0
-setyvel = 5
+setxzvel = 5
 end
 
-local v3_xz, v3_net = v3(setxzvel, setyvel, setxzvel), v3(25, 25, 25)
+local v3_xz, v3_net = v3(setxzvel, setxzvel, setxzvel), v3(25, 25, 25)
 local function getNetlessVelocity(realPartVelocity)
     -- net less
     if realPartVelocity.Magnitude < 0.1 then return v3_net end
